@@ -36,8 +36,8 @@ API.interceptors.response.use(
     let errorData;
 
     if (error.response) {
-      console.error("Error response:", error.response.data);
-      errorData = error?.response?.data;
+      console.error("Error response:", error.response.data.error);
+      errorData = error?.response?.data?.error;
     } else if (error.request) {
       console.error("No response received:", error.request);
       errorData = error?.request;

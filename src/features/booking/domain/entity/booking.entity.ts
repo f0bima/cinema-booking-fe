@@ -1,4 +1,4 @@
-import type { TUser } from "../../../user/domain/entity";
+import type { TUser } from "../../../authentication/domain/entity/user.entity";
 
 export type EBookingType = "online" | "offline";
 export type EBookingStatus = "active" | "used";
