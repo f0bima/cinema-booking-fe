@@ -1,14 +1,18 @@
 ---
-import "../styles/global.css";
-import Welcome from "../components/Welcome.astro";
-import WelcomePage from "../features/dashboard/presentation/components/WelcomePage";
+import { API } from "../common/infrastructure/datasource/api";
 import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getStudiosUsecase } from "../features/dashboard/application/usecase/getStudios.usecase";
+import { cinemaDatasource } from "../features/cinema/infrastructure/datasource/cinema.datasource";
+import StudioCard from "../features/dashboard/presentation/components/StudioCard/StudioCard";
+
+const repository = cinemaDatasource({ api: API });
+const studios = await getStudiosUsecase({ repo: repository }).execute();
 ---
 
 <Layout>
-  <Welcome />
-  <WelcomePage />
+  <div class="grid grid-cols-3 gap-4">
+    {studios.map((studio) => <StudioCard studio={studio} />)}
+  </div>
 </Layout>
