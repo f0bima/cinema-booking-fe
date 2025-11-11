@@ -5,6 +5,7 @@ import type { TInputOnlineBooking } from "../../domain/entity/inputOnlineBooking
 import type { TBookingModel } from "../model/booking.model";
 import { bookingMapper } from "../mapper/booking.mapper";
 import type { TInputOfflineBooking } from "../../domain/entity/inputOfflineBooking.entity";
+import type { TBookingValidation } from "../../domain/entity/bookingValidation.entity";
 
 export const bookingDatasource = ({
   api,
@@ -28,6 +29,28 @@ export const bookingDatasource = ({
       const bookingModel = response.data as TBookingModel;
 
       return bookingMapper.toEntity(bookingModel);
+    });
+  },
+
+  validateBookingCode: async function ({
+    bookingCode,
+  }: {
+    bookingCode: string;
+  }): Promise<TBookingValidation> {
+    return await api
+      .post("/booking/validate", { bookingCode })
+      .then((response) => {
+        const bookingModel = response.data as TBookingValidation;
+        const bookingEntity = bookingModel;
+        return bookingEntity;
+      });
+  },
+
+  getBookings: async function (): Promise<TBooking[]> {
+    return await api.post("/booking/my-bookings").then((response) => {
+      const bookingModel = response.data as TBookingModel[];
+
+      return bookingMapper.toEntities(bookingModel);
     });
   },
 });

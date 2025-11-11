@@ -1,5 +1,8 @@
 import type { TUser } from "../../../user/domain/entity";
 
+export type EBookingType = "online" | "offline";
+export type EBookingStatus = "active" | "used";
+
 export type TBooking = {
   id: number;
   bookingCode: string;
@@ -7,8 +10,8 @@ export type TBooking = {
   studioId: number;
   seatIds: number[];
   qrCode: string;
-  bookingType: "online" | "offline";
-  status: "active" | "used";
+  bookingType: EBookingType;
+  status: EBookingStatus;
   createdAt: Date;
   updatedAt: Date;
 };

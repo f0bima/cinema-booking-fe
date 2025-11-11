@@ -23,4 +23,6 @@ const toBookingEntity = (model: TBookingModel): TBooking => {
 
 export const bookingMapper = {
   toEntity: toBookingEntity,
+  toEntities: (models: TBookingModel[]): TBooking[] =>
+    models.map(toBookingEntity),
 };

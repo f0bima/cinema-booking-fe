@@ -16,5 +16,5 @@ const toSeatEntity = (model: TSeatModel): TSeat => {
 };
 export const seatMapper = {
   toEntity: toSeatEntity,
-  toEntityList: (models: TSeatModel[]): TSeat[] => models.map(toSeatEntity),
+  toEntities: (models: TSeatModel[]): TSeat[] => models.map(toSeatEntity),
 };

@@ -13,7 +13,7 @@ export const cinemaDatasource = ({ api }: { api: AxiosInstance }): ICinema => ({
   getStudios: async function (): Promise<TStudio[]> {
     return await api.get("/cinema/studios").then((response) => {
       const studioModels = response.data as TStudioModel[];
-      return studioMapper.toEntityList(studioModels);
+      return studioMapper.toEntities(studioModels);
     });
   },
   getStudioSeats: async function (props: {
@@ -23,7 +23,7 @@ export const cinemaDatasource = ({ api }: { api: AxiosInstance }): ICinema => ({
       .get(`http://localhost:3000/api/cinema/studios/${props.studioId}/seats`)
       .then((response) => {
         const seatModels = response.data as TSeatModel[];
-        return seatMapper.toEntityList(seatModels);
+        return seatMapper.toEntities(seatModels);
       });
   },
 });

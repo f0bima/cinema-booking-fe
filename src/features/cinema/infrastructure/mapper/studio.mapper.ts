@@ -12,6 +12,6 @@ const fromStudioEntity = (model: TStudioModel): TStudio => {
 };
 export const studioMapper = {
   toEntity: fromStudioEntity,
-  toEntityList: (models: TStudioModel[]): TStudio[] =>
+  toEntities: (models: TStudioModel[]): TStudio[] =>
     models.map(fromStudioEntity),
 };
