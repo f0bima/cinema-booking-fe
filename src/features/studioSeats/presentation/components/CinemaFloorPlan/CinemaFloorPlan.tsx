@@ -1,7 +1,7 @@
 import type { TSeat } from "../../../../cinema/domain/entity/seat.entity";
-import CinemaScreen from "./CinemaScreen";
 import SeatInformation from "../SeatsConfiguration/SeatInformation";
 import SeatsConfiguration from "../SeatsConfiguration/SeatsConfiguration";
+import CinemaScreen from "./CinemaScreen";
 
 type Props = { seats: TSeat[] };
 

@@ -1,4 +1,4 @@
-import type { TBooking } from "../entity/booking.entity";
+import type { TBooking } from "../entity/ticket.entity";
 import type { TBookingValidation } from "../entity/bookingValidation.entity";
 import type { TInputOfflineBooking } from "../entity/inputOfflineBooking.entity";
 import type { TInputOnlineBooking } from "../entity/inputOnlineBooking.entity";
@@ -9,5 +9,5 @@ export interface IBooking {
   validateBookingCode: (props: {
     bookingCode: string;
   }) => Promise<TBookingValidation>;
-  getBookings: () => Promise<TBooking[]>;
+  getTikets: () => Promise<TBooking[]>;
 }

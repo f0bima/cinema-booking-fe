@@ -1,10 +1,10 @@
 ---
-import "../../styles/global.css";
 import { API } from "../../common/infrastructure/datasource/api";
-import { getStudioSeatsUsecase } from "../../features/dashboard/application/usecase/getStudioSeats.usecase";
 import { cinemaDatasource } from "../../features/cinema/infrastructure/datasource/cinema.datasource";
+import { getStudioSeatsUsecase } from "../../features/dashboard/application/usecase/getStudioSeats.usecase";
 import CinemaFloorPlan from "../../features/studioSeats/presentation/components/CinemaFloorPlan/CinemaFloorPlan";
 import OnlineBookingButton from "../../features/studioSeats/presentation/components/OnlineBookingButton/OnlineBookingButton";
+import "../../styles/global.css";
 
 const params = Astro.params;
 

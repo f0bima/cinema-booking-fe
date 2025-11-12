@@ -1,9 +1,9 @@
 import type { TUser } from "../../../authentication/domain/entity/user.entity";
 
 export type EBookingType = "online" | "offline";
-export type EBookingStatus = "active" | "used";
+export type ETicketStatus = "active" | "used";
 
-export type TBooking = {
+export type TTicket = {
   id: number;
   bookingCode: string;
   user: Omit<TUser, "role">;
@@ -11,7 +11,7 @@ export type TBooking = {
   seatIds: number[];
   qrCode: string;
   bookingType: EBookingType;
-  status: EBookingStatus;
+  status: ETicketStatus;
   createdAt: Date;
   updatedAt: Date;
 };
