@@ -1,11 +1,29 @@
 ---
+import "../../styles/global.css";
 import { API } from "../../common/infrastructure/datasource/api";
 import { getStudioSeatsUsecase } from "../../features/dashboard/application/usecase/getStudioSeats.usecase";
 import { cinemaDatasource } from "../../features/cinema/infrastructure/datasource/cinema.datasource";
-const { studioId } = Astro.params;
+import CinemaFloorPlan from "../../features/studioSeats/presentation/components/CinemaFloorPlan/CinemaFloorPlan";
+import OnlineBookingButton from "../../features/studioSeats/presentation/components/OnlineBookingButton/OnlineBookingButton";
+
+const params = Astro.params;
+
+const studioId = parseInt(params.studioId);
+
 const repository = cinemaDatasource({ api: API });
 const seats = await getStudioSeatsUsecase({ repo: repository }).execute({
-  studioId: parseInt(studioId),
+  studioId: studioId,
+});
+
+seats.sort((a, b) => {
+  const getNumberSeat = (seatNumber: string) => {
+    return Number(seatNumber.replace(/^\D+/g, ""));
+  };
+
+  const numberSeatA = getNumberSeat(a.seatNumber);
+  const numberSeatB = getNumberSeat(b.seatNumber);
+
+  return numberSeatA - numberSeatB;
 });
 ---
 
@@ -17,8 +35,7 @@ const seats = await getStudioSeatsUsecase({ repo: repository }).execute({
     <title>Studio</title>
   </head>
   <body>
-    <pre>
-      {JSON.stringify(seats, null, 2)}
-    </pre>
+    <CinemaFloorPlan seats={seats} client:load />
+    <OnlineBookingButton studioId={studioId} client:load />
   </body>
 </html>
