@@ -1,9 +1,12 @@
 ---
+import { Toaster } from "@/components/ui/sonner";
+import OfflineBookingButton from "@/features/studioSeats/presentation/components/OfflineBookingButton/OfflineBookingButton";
 import { API } from "../../common/infrastructure/datasource/api";
 import { cinemaDatasource } from "../../features/cinema/infrastructure/datasource/cinema.datasource";
 import { getStudioSeatsUsecase } from "../../features/dashboard/application/usecase/getStudioSeats.usecase";
 import CinemaFloorPlan from "../../features/studioSeats/presentation/components/CinemaFloorPlan/CinemaFloorPlan";
 import OnlineBookingButton from "../../features/studioSeats/presentation/components/OnlineBookingButton/OnlineBookingButton";
+
 import "../../styles/global.css";
 
 const params = Astro.params;
@@ -37,5 +40,8 @@ seats.sort((a, b) => {
   <body>
     <CinemaFloorPlan seats={seats} client:load />
     <OnlineBookingButton studioId={studioId} client:load />
+    <OfflineBookingButton studioId={studioId} client:load />
+
+    <Toaster position="top-center" client:load />
   </body>
 </html>

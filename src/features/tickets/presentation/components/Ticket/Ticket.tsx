@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import type { TTicket } from "../../../../booking/domain/entity/ticket.entity";
 import Seat from "../../../../studioSeats/presentation/components/SeatsConfiguration/Seat";
 import QRCodeViewer from "../QRCodeViewer/QRCodeViewer";
@@ -20,7 +21,12 @@ const Ticket = ({ ticket }: Props) => {
         </div>
       </div>
       <div className="">
-        <p>{ticket.status}</p>
+        <Badge
+          variant={ticket.status === "active" ? "secondary" : "destructive"}
+          className="uppercase"
+        >
+          {ticket.status}
+        </Badge>
         <div className="aspect-square w-12">
           <QRCodeViewer qrBase64={ticket.qrCode} />
         </div>

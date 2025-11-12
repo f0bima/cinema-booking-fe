@@ -15,7 +15,7 @@ function Seat({ status = "available", seatNumber, onClick }: Props) {
     const textColorMap: Record<ESeatStatus, string> = {
       available: "text-black",
       booked: "text-gray-300",
-      selected: "text-green-300",
+      selected: "text-green-500",
     };
 
     return textColorMap[status] ?? "text-black";
