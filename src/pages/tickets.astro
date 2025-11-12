@@ -1,11 +1,11 @@
 ---
 import { authUtils } from "@/common/libs/utils/auth.utils";
+import Layout from "@/layouts/Layout.astro";
 import { API } from "../common/infrastructure/datasource/api";
 import { bookingDatasource } from "../features/booking/infrastructure/datasource/booking.datasource";
-import Layout from "@/layouts/Layout.astro";
 
 import { getTicketsUsecase } from "../features/tickets/application/usecase/getTickets.usecase";
-import Ticket from "../features/tickets/presentation/components/Ticket/Ticket";
+import TicketsComponent from "../features/tickets/presentation/components/Ticket/Tickets";
 
 const bookingRepo = bookingDatasource({ api: API });
 
@@ -22,11 +22,11 @@ const usedTickets = tickets.filter((ticket) => ticket.status === "used");
   <section class="flex flex-col gap-12">
     <section>
       <p>Active Ticket</p>
-      {activeTickets.map((ticket) => <Ticket ticket={ticket} client:load />)}
+      <TicketsComponent tickets={activeTickets} client:load />
     </section>
-    <section>
-      <p>History</p>
-      {usedTickets.map((ticket) => <Ticket ticket={ticket} client:load />)}
-    </section>
+  </section>
+  <section>
+    <p>History</p>
+    <TicketsComponent tickets={usedTickets} client:load />
   </section>
 </Layout>

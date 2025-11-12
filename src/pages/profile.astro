@@ -1,0 +1,11 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LogoutButton from "@/features/authentication/presentation/components/LogoutButton/LogoutButton";
+---
+
+<Layout>
+  <section class="space-y-8">
+    <h1 class="text-5xl">My Profile</h1>
+    <LogoutButton client:load />
+  </section>
+</Layout>
