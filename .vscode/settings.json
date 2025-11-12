@@ -1,0 +1,16 @@
+{
+	"sqltools.connections": [
+		{
+			"ssh": "Disabled",
+			"previewLimit": 50,
+			"server": "localhost",
+			"port": 5433,
+			"driver": "PostgreSQL",
+			"name": "cinema auth",
+			"database": "cinema_booking",
+			"username": "postgres",
+			"password": "password",
+			"connectionTimeout": 30
+		}
+	]
+}
