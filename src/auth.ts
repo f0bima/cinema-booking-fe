@@ -1,11 +1,5 @@
 import { betterAuth, type BetterAuthPlugin } from "better-auth";
 
-const myPlugin = () => {
-  return {
-    id: "custom-login",
-    endpoints: {},
-  } satisfies BetterAuthPlugin;
-};
 export const auth = betterAuth({
   // database: new Database("./db.sqlite"),
   // account: {
@@ -14,19 +8,19 @@ export const auth = betterAuth({
   //     trustedProviders: ["google"],
   //   },
   // },
-  // emailAndPassword: {
-  //   enabled: true,
-  // },
-  // socialProviders: {
-  //   google: {
-  //     clientId: import.meta.env.GOOGLE_CLIENT_ID!,
-  //     clientSecret: import.meta.env.GOOGLE_CLIENT_SECRET!,
-  //   },
-  //   github: {
-  //     clientId: import.meta.env.GITHUB_CLIENT_ID!,
-  //     clientSecret: import.meta.env.GITHUB_CLIENT_SECRET!,
-  //   },
-  // },
+  emailAndPassword: {
+    enabled: true,
+  },
+  socialProviders: {
+    google: {
+      clientId: import.meta.env.GOOGLE_CLIENT_ID!,
+      clientSecret: import.meta.env.GOOGLE_CLIENT_SECRET!,
+    },
+    github: {
+      clientId: import.meta.env.GITHUB_CLIENT_ID!,
+      clientSecret: import.meta.env.GITHUB_CLIENT_SECRET!,
+    },
+  },
   // plugins: [
   //   passkey(),
   //   twoFactor({
@@ -46,5 +40,6 @@ export const auth = betterAuth({
   rateLimit: {
     enabled: true,
   },
+
   session: {},
 });

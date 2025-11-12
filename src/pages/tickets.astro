@@ -1,13 +1,18 @@
 ---
-import "../../styles/global.css";
-import { API } from "../../common/infrastructure/datasource/api";
-import { bookingDatasource } from "../../features/booking/infrastructure/datasource/booking.datasource";
-import { getTicketsUsecase } from "../../features/tickets/application/usecase/getTickets.usecase";
-import Ticket from "../../features/tickets/presentation/components/Ticket/Ticket";
+import { authUtils } from "@/common/libs/utils/auth.utils";
+import { API } from "../common/infrastructure/datasource/api";
+import { bookingDatasource } from "../features/booking/infrastructure/datasource/booking.datasource";
+import "../styles/global.css";
+import { getTicketsUsecase } from "../features/tickets/application/usecase/getTickets.usecase";
+import Ticket from "../features/tickets/presentation/components/Ticket/Ticket";
 
 const bookingRepo = bookingDatasource({ api: API });
 
-const tickets = await getTicketsUsecase({ repo: bookingRepo }).execute();
+const token = authUtils.getToken({ request: Astro.request });
+
+const tickets = await getTicketsUsecase({ repo: bookingRepo }).execute({
+  token,
+});
 const activeTickets = tickets.filter((ticket) => ticket.status === "active");
 const usedTickets = tickets.filter((ticket) => ticket.status === "used");
 ---
