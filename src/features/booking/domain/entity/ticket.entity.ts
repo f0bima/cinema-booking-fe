@@ -6,7 +6,7 @@ export type ETicketStatus = "active" | "used";
 export type TTicket = {
   id: number;
   bookingCode: string;
-  user: Omit<TUser, "role">;
+  user: Omit<TUser, "role" | "id"> & { id: number | null };
   studioId: number;
   seatIds: number[];
   qrCode: string;
