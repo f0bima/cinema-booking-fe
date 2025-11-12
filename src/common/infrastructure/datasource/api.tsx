@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const baseUrl = "http://localhost:3000/api/";
-
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE3NjMwMTYwMDAsInJvbGUiOiJjdXN0b21lciIsInVzZXJJZCI6MX0.taIIj-MgaaIKKqjwJbt2X5_YLbo8-cd93k2rLhQ7zQg";
 export type TErrorData = {
   code: string;
   message: string;
@@ -19,6 +20,7 @@ export const API = axios.create({
 
 API.interceptors.request.use(
   (config) => {
+    config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   (error) => {

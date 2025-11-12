@@ -1,4 +1,4 @@
-import type { EBookingType } from "./booking.entity";
+import type { EBookingType } from "./ticket.entity";
 
 export type TBookingValidation = {
   booking: {

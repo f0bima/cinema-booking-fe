@@ -1,11 +1,13 @@
 import type { AxiosInstance } from "axios";
 import type { IBooking } from "../../domain/repository/booking.repository";
-import type { TBooking } from "../../domain/entity/booking.entity";
-import type { TInputOnlineBooking } from "../../domain/entity/inputOnlineBooking.entity";
-import type { TBookingModel } from "../model/booking.model";
-import { bookingMapper } from "../mapper/booking.mapper";
-import type { TInputOfflineBooking } from "../../domain/entity/inputOfflineBooking.entity";
+
 import type { TBookingValidation } from "../../domain/entity/bookingValidation.entity";
+import type { TInputOfflineBooking } from "../../domain/entity/inputOfflineBooking.entity";
+import type { TInputOnlineBooking } from "../../domain/entity/inputOnlineBooking.entity";
+import type { TTicket } from "../../domain/entity/ticket.entity";
+
+import type { TBookingModel, TTicketModel } from "../model/booking.model";
+import { ticketMapper } from "../mapper/ticket.mapper";
 
 export const bookingDatasource = ({
   api,
@@ -14,21 +16,21 @@ export const bookingDatasource = ({
 }): IBooking => ({
   createOnlineBooking: async function (
     input: TInputOnlineBooking,
-  ): Promise<TBooking> {
+  ): Promise<TTicket> {
     return await api.post("/booking/online", input).then((response) => {
       const bookingModel = response.data as TBookingModel;
 
-      return bookingMapper.toEntity(bookingModel);
+      return ticketMapper.toEntity(bookingModel.booking);
     });
   },
 
   createOfflineBooking: async function (
     input: TInputOfflineBooking,
-  ): Promise<TBooking> {
+  ): Promise<TTicket> {
     return await api.post("/booking/offline", input).then((response) => {
       const bookingModel = response.data as TBookingModel;
 
-      return bookingMapper.toEntity(bookingModel);
+      return ticketMapper.toEntity(bookingModel.booking);
     });
   },
 
@@ -46,11 +48,13 @@ export const bookingDatasource = ({
       });
   },
 
-  getBookings: async function (): Promise<TBooking[]> {
-    return await api.post("/booking/my-bookings").then((response) => {
-      const bookingModel = response.data as TBookingModel[];
+  getTikets: async function (): Promise<TTicket[]> {
+    return await api.get("/booking/my-bookings").then((response) => {
+      const ticketModels = response.data as TTicketModel[];
 
-      return bookingMapper.toEntities(bookingModel);
+      console.log({ ticketModels });
+
+      return ticketMapper.toEntities(ticketModels);
     });
   },
 });
