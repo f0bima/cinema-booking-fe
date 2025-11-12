@@ -22,7 +22,7 @@ const LoginForm = () => {
       password: "",
     },
   });
-  const login = (loginRequest: TLoginRequest) => {
+  const onLogin = (loginRequest: TLoginRequest) => {
     loginUsecase({ repo: authRepo })
       .execute({ ...loginRequest })
       .then((response) => {
@@ -31,7 +31,7 @@ const LoginForm = () => {
       .catch((err) => console.log({ error: err.data }));
   };
   return (
-    <form onSubmit={control.handleSubmit(login)}>
+    <form onSubmit={control.handleSubmit(onLogin)}>
       <input placeholder="email" type="email" {...register("email")} />
       <FormMessage error={errors.email} />
 
