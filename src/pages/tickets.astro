@@ -2,7 +2,8 @@
 import { authUtils } from "@/common/libs/utils/auth.utils";
 import { API } from "../common/infrastructure/datasource/api";
 import { bookingDatasource } from "../features/booking/infrastructure/datasource/booking.datasource";
-import "../styles/global.css";
+import Layout from "@/layouts/Layout.astro";
+
 import { getTicketsUsecase } from "../features/tickets/application/usecase/getTickets.usecase";
 import Ticket from "../features/tickets/presentation/components/Ticket/Ticket";
 
@@ -17,23 +18,15 @@ const activeTickets = tickets.filter((ticket) => ticket.status === "active");
 const usedTickets = tickets.filter((ticket) => ticket.status === "used");
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tickets</title>
-  </head>
-  <body>
-    <section class="flex flex-col gap-12">
-      <section>
-        <p>Active Ticket</p>
-        {activeTickets.map((ticket) => <Ticket ticket={ticket} />)}
-      </section>
-      <section>
-        <p>History</p>
-        {usedTickets.map((ticket) => <Ticket ticket={ticket} />)}
-      </section>
+<Layout>
+  <section class="flex flex-col gap-12">
+    <section>
+      <p>Active Ticket</p>
+      {activeTickets.map((ticket) => <Ticket ticket={ticket} client:load />)}
     </section>
-  </body>
-</html>
+    <section>
+      <p>History</p>
+      {usedTickets.map((ticket) => <Ticket ticket={ticket} client:load />)}
+    </section>
+  </section>
+</Layout>

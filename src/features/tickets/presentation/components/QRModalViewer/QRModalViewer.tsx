@@ -8,14 +8,19 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import QRCodeViewer from "@/features/tickets/presentation/components/QRCodeViewer/QRCodeViewer";
+import type { DialogProps } from "@radix-ui/react-dialog";
 import { navigate } from "astro:transitions/client";
+import type { FC } from "react";
 
-type Props = { isOpen: boolean; qrBase64: string };
+type Props = React.ComponentProps<FC<DialogProps>> & { qrBase64: string };
 
-const QRModalViewer = (props: Props) => {
+const QRModalViewer = ({ qrBase64, ...props }: Props) => {
   return (
-    <Dialog open={props.isOpen}>
-      <DialogContent className="sm:max-w-[425px]" showCloseButton={false}>
+    <Dialog {...props}>
+      <DialogContent
+        className="sm:max-w-[425px]"
+        showCloseButton={props.onOpenChange !== undefined}
+      >
         <DialogHeader>
           <DialogTitle>Your QR booking ticket</DialogTitle>
           <DialogDescription>
@@ -23,7 +28,7 @@ const QRModalViewer = (props: Props) => {
           </DialogDescription>
         </DialogHeader>
         <div className="flex w-full items-center justify-center gap-4">
-          <QRCodeViewer qrBase64={props.qrBase64} />
+          <QRCodeViewer qrBase64={qrBase64} />
         </div>
         <DialogFooter>
           <Button

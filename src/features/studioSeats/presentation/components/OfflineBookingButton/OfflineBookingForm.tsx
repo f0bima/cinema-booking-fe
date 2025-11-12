@@ -60,7 +60,7 @@ const OfflineBookingForm = (props: Props) => {
           Booking
         </Button>
       </form>
-      <QRModalViewer isOpen={isOpen} qrBase64={ticketQRCode} />
+      <QRModalViewer open={isOpen} qrBase64={ticketQRCode} />
     </>
   );
 };

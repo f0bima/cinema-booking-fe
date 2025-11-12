@@ -31,7 +31,7 @@ const OnlineBookingButton = (props: Props) => {
   return (
     <>
       <BookingSeatsButton onBooking={onBookingOnlineSeat} />
-      <QRModalViewer isOpen={isOpen} qrBase64={ticketQRCode} />
+      <QRModalViewer open={isOpen} qrBase64={ticketQRCode} />
     </>
   );
 };
