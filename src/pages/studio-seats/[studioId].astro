@@ -1,5 +1,4 @@
 ---
-import { Toaster } from "@/components/ui/sonner";
 import OfflineBookingButton from "@/features/studioSeats/presentation/components/OfflineBookingButton/OfflineBookingButton";
 import { API } from "../../common/infrastructure/datasource/api";
 import { cinemaDatasource } from "../../features/cinema/infrastructure/datasource/cinema.datasource";
@@ -7,7 +6,7 @@ import { getStudioSeatsUsecase } from "../../features/dashboard/application/usec
 import CinemaFloorPlan from "../../features/studioSeats/presentation/components/CinemaFloorPlan/CinemaFloorPlan";
 import OnlineBookingButton from "../../features/studioSeats/presentation/components/OnlineBookingButton/OnlineBookingButton";
 
-import "../../styles/global.css";
+import Layout from "@/layouts/Layout.astro";
 
 const params = Astro.params;
 
@@ -30,18 +29,8 @@ seats.sort((a, b) => {
 });
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Studio</title>
-  </head>
-  <body>
-    <CinemaFloorPlan seats={seats} client:load />
-    <OnlineBookingButton studioId={studioId} client:load />
-    <OfflineBookingButton studioId={studioId} client:load />
-
-    <Toaster position="top-center" client:load />
-  </body>
-</html>
+<Layout>
+  <CinemaFloorPlan seats={seats} client:load />
+  <OnlineBookingButton studioId={studioId} client:load />
+  <OfflineBookingButton studioId={studioId} client:load />
+</Layout>

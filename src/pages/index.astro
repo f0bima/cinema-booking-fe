@@ -1,18 +1,26 @@
 ---
 import { API } from "../common/infrastructure/datasource/api";
 import Layout from "../layouts/Layout.astro";
-import "../styles/global.css";
 
-import { getStudiosUsecase } from "../features/dashboard/application/usecase/getStudios.usecase";
 import { cinemaDatasource } from "../features/cinema/infrastructure/datasource/cinema.datasource";
+import { getStudiosUsecase } from "../features/dashboard/application/usecase/getStudios.usecase";
 import StudioCard from "../features/dashboard/presentation/components/StudioCard/StudioCard";
-
+import { RiMovie2AiLine } from "react-icons/ri";
 const repository = cinemaDatasource({ api: API });
 const studios = await getStudiosUsecase({ repo: repository }).execute();
 ---
 
 <Layout>
-  <div class="grid grid-cols-3 gap-4">
-    {studios.map((studio) => <StudioCard studio={studio} />)}
-  </div>
+  <section class="space-y-8">
+    <h1 class="text-5xl">Cinema 122</h1>
+    <div class="space-y-4">
+      <div class="flex gap-2 items-center text-lg">
+        <RiMovie2AiLine />
+        <h3 class="text-muted-foreground">Available Studio</h3>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        {studios.map((studio) => <StudioCard studio={studio} client:load />)}
+      </div>
+    </div>
+  </section>
 </Layout>

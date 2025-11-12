@@ -1,5 +1,6 @@
 import { API } from "@/common/infrastructure/datasource/api";
 import Button from "@/common/presentation/component/Button/Button";
+import FormMessage from "@/common/presentation/component/FormMessage/FormMessage";
 import { bookingDatasource } from "@/features/booking/infrastructure/datasource/booking.datasource";
 import { offlineBookingSeatUsecase } from "@/features/studioSeats/application/offlineBookingSeat.usecase";
 import {
@@ -51,16 +52,19 @@ const OfflineBookingForm = (props: Props) => {
     <>
       <form onSubmit={control.handleSubmit(onBookingOfflineSeats)}>
         <input placeholder="name" type="text" {...register("customerName")} />
+        <FormMessage error={errors.customerName} />
         <input
           placeholder="email"
           type="email"
           {...register("customerEmail")}
         />
+        <FormMessage error={errors.customerEmail} />
+
         <Button type="submit" disabled={!isValid}>
           Booking
         </Button>
       </form>
-      <QRModalViewer isOpen={isOpen} qrBase64={ticketQRCode} />
+      <QRModalViewer open={isOpen} qrBase64={ticketQRCode} />
     </>
   );
 };
