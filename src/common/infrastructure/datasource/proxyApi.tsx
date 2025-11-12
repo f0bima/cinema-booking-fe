@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api/";
+const baseUrl = "http://localhost:4321/api";
 
 export type TErrorData = {
   code: string;
@@ -12,12 +12,12 @@ export type TApiError = Error & {
   data?: TErrorData;
 };
 
-export const API = axios.create({
+export const PROXY_API = axios.create({
   baseURL: `${baseUrl}`,
   timeout: 5000,
 });
 
-API.interceptors.request.use(
+PROXY_API.interceptors.request.use(
   (config) => {
     return config;
   },
@@ -27,10 +27,10 @@ API.interceptors.request.use(
   },
 );
 
-API.interceptors.response.use(
+PROXY_API.interceptors.response.use(
   (response) => {
     console.log("Response received:", response.data);
-    return response;
+    return response.data;
   },
   (error) => {
     let errorData;

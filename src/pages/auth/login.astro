@@ -1,5 +1,6 @@
 ---
 import "../../styles/global.css";
+import { Toaster } from "@/components/ui/sonner";
 
 import LoginForm from "../../features/authentication/presentation/components/LoginForm/LoginForm";
 ---
@@ -13,5 +14,6 @@ import LoginForm from "../../features/authentication/presentation/components/Log
   </head>
   <body>
     <LoginForm client:load />
+    <Toaster position="top-center" client:load />
   </body>
 </html>

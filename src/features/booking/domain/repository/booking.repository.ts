@@ -9,5 +9,5 @@ export interface IBooking {
   validateBookingCode: (props: {
     bookingCode: string;
   }) => Promise<TBookingValidation>;
-  getTikets: () => Promise<TTicket[]>;
+  getTikets: (props: { token: string }) => Promise<TTicket[]>;
 }

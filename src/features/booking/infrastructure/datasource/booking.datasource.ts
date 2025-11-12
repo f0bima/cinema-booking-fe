@@ -17,11 +17,16 @@ export const bookingDatasource = ({
   createOnlineBooking: async function (
     input: TInputOnlineBooking,
   ): Promise<TTicket> {
-    return await api.post("/booking/online", input).then((response) => {
-      const bookingModel = response.data as TBookingModel;
+    const { token, ...restInputBooking } = input;
+    return await api
+      .post("/booking/online", restInputBooking, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((response) => {
+        const bookingModel = response.data as TBookingModel;
 
-      return ticketMapper.toEntity(bookingModel.booking);
-    });
+        return ticketMapper.toEntity(bookingModel.booking);
+      });
   },
 
   createOfflineBooking: async function (
@@ -48,13 +53,18 @@ export const bookingDatasource = ({
       });
   },
 
-  getTikets: async function (): Promise<TTicket[]> {
-    return await api.get("/booking/my-bookings").then((response) => {
-      const ticketModels = response.data as TTicketModel[];
+  getTikets: async function (props: { token: string }): Promise<TTicket[]> {
+    console.log({ token: props.token });
+    return await api
+      .get("/booking/my-bookings", {
+        headers: { Authorization: props.token },
+      })
+      .then((response) => {
+        const ticketModels = response.data as TTicketModel[];
 
-      console.log({ ticketModels });
+        console.log({ ticketModels });
 
-      return ticketMapper.toEntities(ticketModels);
-    });
+        return ticketMapper.toEntities(ticketModels);
+      });
   },
 });

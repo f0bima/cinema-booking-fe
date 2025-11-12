@@ -1,10 +1,11 @@
-import { onlineBookingSeatUsecase } from "@/features/studioSeats/application/onlineBookingSeat.usecase";
 import QRModalViewer from "@/features/tickets/presentation/components/QRModalViewer/QRModalViewer";
 import { useState } from "react";
 import { toast } from "sonner";
 import { API } from "../../../../../common/infrastructure/datasource/api";
 import { bookingDatasource } from "../../../../booking/infrastructure/datasource/booking.datasource";
 import BookingSeatsButton from "../BookingSeatsButton/BookingSeatsButton";
+import { PROXY_API } from "@/common/infrastructure/datasource/proxyApi";
+import type { TTicket } from "@/features/booking/domain/entity/ticket.entity";
 
 type Props = { studioId: number };
 
@@ -15,13 +16,10 @@ const OnlineBookingButton = (props: Props) => {
   const [ticketQRCode, setTicketQRCode] = useState<string>("");
 
   const onBookingOnlineSeat = ({ seatIds }: { seatIds: number[] }) => {
-    onlineBookingSeatUsecase({ repo: bookingRepo })
-      .execute({
-        seatIds,
-        studioId: props.studioId,
-      })
+    PROXY_API.post("/online-bookings", { seatIds, studioId: props.studioId })
       .then((response) => {
-        setTicketQRCode(response.qrCode);
+        const ticket = response as unknown as TTicket;
+        setTicketQRCode(ticket.qrCode);
         setIsOpen(true);
         toast.success("Success booking seats");
       })
