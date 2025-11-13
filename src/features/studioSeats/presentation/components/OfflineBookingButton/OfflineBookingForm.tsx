@@ -1,6 +1,8 @@
 import { API } from "@/common/infrastructure/datasource/api";
 import Button from "@/common/presentation/component/Button/Button";
+import FormGroup from "@/common/presentation/component/FormGroup/FormGroup";
 import FormMessage from "@/common/presentation/component/FormMessage/FormMessage";
+import Input from "@/common/presentation/component/Input/Input";
 import { bookingDatasource } from "@/features/booking/infrastructure/datasource/booking.datasource";
 import { offlineBookingSeatUsecase } from "@/features/studioSeats/application/offlineBookingSeat.usecase";
 import {
@@ -9,8 +11,10 @@ import {
 } from "@/features/studioSeats/presentation/schema/offlineBooking.schema";
 import QRModalViewer from "@/features/tickets/presentation/components/QRModalViewer/QRModalViewer";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { navigate } from "astro:transitions/client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { IoPrint } from "react-icons/io5";
 import { toast } from "sonner";
 
 type Props = { studioId: number; seatIds: number[] };
@@ -50,21 +54,46 @@ const OfflineBookingForm = (props: Props) => {
   };
   return (
     <>
-      <form onSubmit={control.handleSubmit(onBookingOfflineSeats)}>
-        <input placeholder="name" type="text" {...register("customerName")} />
-        <FormMessage error={errors.customerName} />
-        <input
-          placeholder="email"
-          type="email"
-          {...register("customerEmail")}
-        />
-        <FormMessage error={errors.customerEmail} />
+      <form
+        onSubmit={control.handleSubmit(onBookingOfflineSeats)}
+        className="space-y-4"
+      >
+        <FormGroup label="Name">
+          <Input placeholder="name" type="text" {...register("customerName")} />
+          <FormMessage error={errors.customerName} />
+        </FormGroup>
+        <FormGroup label="Email">
+          <Input
+            placeholder="email"
+            type="email"
+            {...register("customerEmail")}
+          />
+          <FormMessage error={errors.customerEmail} />
+        </FormGroup>
 
-        <Button type="submit" disabled={!isValid}>
+        <Button type="submit" disabled={!isValid} className="w-full">
           Booking
         </Button>
       </form>
-      <QRModalViewer open={isOpen} qrBase64={ticketQRCode} />
+      <QRModalViewer open={isOpen} qrBase64={ticketQRCode}>
+        <div className="flex w-full gap-2">
+          <Button
+            className="flex flex-1 items-center justify-center gap-2 bg-green-100"
+            onClick={() => window.print()}
+          >
+            <IoPrint />
+            <span>Print</span>
+          </Button>
+          <Button
+            onClick={() => {
+              window.location.reload();
+            }}
+            className="w-full flex-1"
+          >
+            Goto your tickets
+          </Button>
+        </div>
+      </QRModalViewer>
     </>
   );
 };

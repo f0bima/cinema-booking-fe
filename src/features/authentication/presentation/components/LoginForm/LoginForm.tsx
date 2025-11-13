@@ -8,6 +8,9 @@ import { loginSchema, type TLoginRequest } from "../../schema/login.schema";
 import { toast } from "sonner";
 import { navigate } from "astro:transitions/client";
 import { PROXY_API } from "@/common/infrastructure/datasource/proxyApi";
+import Input from "@/common/presentation/component/Input/Input";
+import FormGroup from "@/common/presentation/component/FormGroup/FormGroup";
+import Button from "@/common/presentation/component/Button/Button";
 
 const LoginForm = () => {
   const {
@@ -22,6 +25,7 @@ const LoginForm = () => {
       password: "",
     },
   });
+
   const onLogin = (loginRequest: TLoginRequest) => {
     PROXY_API.post("/auth/login", loginRequest)
       .then(async (res) => {
@@ -32,17 +36,22 @@ const LoginForm = () => {
         toast.error(error.data);
       });
   };
+
   return (
-    <form onSubmit={control.handleSubmit(onLogin)}>
-      <input placeholder="email" type="email" {...register("email")} />
-      <FormMessage error={errors.email} />
+    <form onSubmit={control.handleSubmit(onLogin)} className="space-y-4">
+      <FormGroup label="Email">
+        <Input placeholder="Email..." type="email" {...register("email")} />
+        <FormMessage error={errors.email} />
+      </FormGroup>
 
-      <PasswordInput placeholder="password" {...register("password")} />
-      <FormMessage error={errors.password} />
+      <FormGroup label="Password">
+        <PasswordInput placeholder="Password..." {...register("password")} />
+        <FormMessage error={errors.password} />
+      </FormGroup>
 
-      <button type="submit" disabled={!isValid}>
+      <Button type="submit" disabled={!isValid} className="w-full">
         Login
-      </button>
+      </Button>
     </form>
   );
 };

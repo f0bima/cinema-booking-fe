@@ -9,11 +9,14 @@ type Props = {
 const BookingSeatsButton = (props: Props) => {
   const $selectedSeats = useStore(selectedSeats);
 
+  const selectedSeatsLength = useMemo(
+    () => $selectedSeats.length,
+    [$selectedSeats],
+  );
   const label = useMemo(() => {
-    const selectedSeatsLength = $selectedSeats.length;
     if (selectedSeatsLength === 0) return "Please choose seats";
     return `Book ${selectedSeatsLength} seat${selectedSeatsLength > 1 ? "s" : ""} now`;
-  }, [$selectedSeats]);
+  }, [selectedSeatsLength]);
 
   const onBooking = () => {
     props.onBooking({
@@ -21,7 +24,11 @@ const BookingSeatsButton = (props: Props) => {
     });
   };
 
-  return <Button onClick={onBooking}>{label}</Button>;
+  return (
+    <Button onClick={onBooking} disabled={selectedSeatsLength === 0}>
+      {label}
+    </Button>
+  );
 };
 
 export default BookingSeatsButton;

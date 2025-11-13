@@ -1,6 +1,5 @@
 import type { TTicket } from "@/features/booking/domain/entity/ticket.entity";
 import Ticket from "@/features/tickets/presentation/components/Ticket/Ticket";
-import React from "react";
 
 type Props = { tickets: TTicket[] };
 

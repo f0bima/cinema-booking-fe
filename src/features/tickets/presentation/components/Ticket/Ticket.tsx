@@ -4,6 +4,8 @@ import Seat from "../../../../studioSeats/presentation/components/SeatsConfigura
 import QRCodeViewer from "../QRCodeViewer/QRCodeViewer";
 import QRModalViewer from "@/features/tickets/presentation/components/QRModalViewer/QRModalViewer";
 import { useState } from "react";
+import Button from "@/common/presentation/component/Button/Button";
+import { navigate } from "astro/virtual-modules/transitions-router.js";
 
 type Props = { ticket: TTicket };
 
@@ -23,7 +25,7 @@ const Ticket = ({ ticket }: Props) => {
           <p>Seats</p>
           <div className="flex justify-center gap-2">
             {ticket.seatIds.map((seat) => (
-              <Seat seatNumber={seat.toString()} />
+              <Seat key={seat} seatNumber={seat.toString()} />
             ))}
           </div>
         </div>

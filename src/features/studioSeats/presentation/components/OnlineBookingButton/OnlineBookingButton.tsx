@@ -6,6 +6,8 @@ import { bookingDatasource } from "../../../../booking/infrastructure/datasource
 import BookingSeatsButton from "../BookingSeatsButton/BookingSeatsButton";
 import { PROXY_API } from "@/common/infrastructure/datasource/proxyApi";
 import type { TTicket } from "@/features/booking/domain/entity/ticket.entity";
+import Button from "@/common/presentation/component/Button/Button";
+import { navigate } from "astro/virtual-modules/transitions-router.js";
 
 type Props = { studioId: number };
 
@@ -31,7 +33,16 @@ const OnlineBookingButton = (props: Props) => {
   return (
     <>
       <BookingSeatsButton onBooking={onBookingOnlineSeat} />
-      <QRModalViewer open={isOpen} qrBase64={ticketQRCode} />
+      <QRModalViewer open={isOpen} qrBase64={ticketQRCode}>
+        <Button
+          onClick={() => {
+            navigate("/tickets");
+          }}
+          className="w-full"
+        >
+          Goto your tickets
+        </Button>
+      </QRModalViewer>
     </>
   );
 };

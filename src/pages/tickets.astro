@@ -6,6 +6,8 @@ import { bookingDatasource } from "../features/booking/infrastructure/datasource
 
 import { getTicketsUsecase } from "../features/tickets/application/usecase/getTickets.usecase";
 import TicketsComponent from "../features/tickets/presentation/components/Ticket/Tickets";
+import { IoTicket } from "react-icons/io5";
+import { LuHistory } from "react-icons/lu";
 
 const bookingRepo = bookingDatasource({ api: API });
 
@@ -19,14 +21,21 @@ const usedTickets = tickets.filter((ticket) => ticket.status === "used");
 ---
 
 <Layout>
-  <section class="flex flex-col gap-12">
-    <section>
-      <p>Active Ticket</p>
+  <section class="space-y-8">
+    <h1 class="text-3xl">Your Tickets</h1>
+    <section class="flex flex-col gap-4">
+      <div class="flex gap-2 items-center">
+        <IoTicket />
+        <h2>Active Ticket</h2>
+      </div>
       <TicketsComponent tickets={activeTickets} client:load />
     </section>
-  </section>
-  <section>
-    <p>History</p>
-    <TicketsComponent tickets={usedTickets} client:load />
+    <section class="flex flex-col gap-4">
+      <div class="flex gap-2 items-center">
+        <LuHistory />
+        <h2>Active Ticket</h2>
+      </div>
+      <TicketsComponent tickets={usedTickets} client:load />
+    </section>
   </section>
 </Layout>

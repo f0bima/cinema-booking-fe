@@ -1,4 +1,3 @@
-import Button from "@/common/presentation/component/Button/Button";
 import {
   Dialog,
   DialogContent,
@@ -9,7 +8,6 @@ import {
 } from "@/components/ui/dialog";
 import QRCodeViewer from "@/features/tickets/presentation/components/QRCodeViewer/QRCodeViewer";
 import type { DialogProps } from "@radix-ui/react-dialog";
-import { navigate } from "astro:transitions/client";
 import type { FC } from "react";
 
 type Props = React.ComponentProps<FC<DialogProps>> & { qrBase64: string };
@@ -27,19 +25,13 @@ const QRModalViewer = ({ qrBase64, ...props }: Props) => {
             Show your QR booking ticket to our staff
           </DialogDescription>
         </DialogHeader>
-        <div className="flex w-full items-center justify-center gap-4">
+        <div
+          id="print-area"
+          className="flex w-full items-center justify-center gap-4"
+        >
           <QRCodeViewer qrBase64={qrBase64} />
         </div>
-        <DialogFooter>
-          <Button
-            onClick={() => {
-              navigate("/tickets");
-            }}
-            className="w-full"
-          >
-            Goto your tickets
-          </Button>
-        </DialogFooter>
+        <DialogFooter>{props.children}</DialogFooter>
       </DialogContent>
     </Dialog>
   );
