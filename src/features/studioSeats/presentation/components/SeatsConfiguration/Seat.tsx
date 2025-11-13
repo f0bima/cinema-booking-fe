@@ -29,7 +29,7 @@ function Seat({ status = "available", seatNumber, onClick }: Props) {
         status === "booked" ? "cursor-not-allowed" : "cursor-pointer",
 
         status !== "booked"
-          ? "transition-all hover:scale-110 hover:text-indigo-500"
+          ? "transition-all hover:scale-110 hover:text-green-500"
           : "",
       )}
     >

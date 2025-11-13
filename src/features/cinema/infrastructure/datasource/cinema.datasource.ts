@@ -20,7 +20,7 @@ export const cinemaDatasource = ({ api }: { api: AxiosInstance }): ICinema => ({
     studioId: number;
   }): Promise<TSeat[]> {
     return await api
-      .get(`http://localhost:3000/api/cinema/studios/${props.studioId}/seats`)
+      .get(`/cinema/studios/${props.studioId}/seats`)
       .then((response) => {
         const seatModels = response.data as TSeatModel[];
         return seatMapper.toEntities(seatModels);

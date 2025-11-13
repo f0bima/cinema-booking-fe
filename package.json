@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.0",
     "@astrojs/react": "^4.4.2",
     "@astrojs/ts-plugin": "^1.10.5",
     "@hookform/resolvers": "^5.2.2",

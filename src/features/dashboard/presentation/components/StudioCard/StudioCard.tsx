@@ -2,11 +2,11 @@ import { MdChair } from "react-icons/md";
 import type { TStudio } from "../../../../cinema/domain/entity/studio.entity";
 import { navigate } from "astro:transitions/client";
 
-type Props = { studio: TStudio };
+type Props = { baseUrl?: string; studio: TStudio };
 
-const StudioCard = (props: Props) => {
+const StudioCard = ({ baseUrl = "", ...props }: Props) => {
   const goToSeatDetail = () => {
-    navigate(`/studio-seats/${props.studio.id}`);
+    navigate(`${baseUrl}/studio-seats/${props.studio.id}`);
   };
   return (
     <div

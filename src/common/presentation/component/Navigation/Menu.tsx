@@ -4,25 +4,30 @@ import { forwardRef, type ComponentProps } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-type Props = ComponentProps<"button"> & { menu: TMenu; isActive: boolean };
+type Props = Omit<ComponentProps<"button">, "onClick"> & {
+  menu: TMenu;
+  isActive: boolean;
+};
 
 const Menu = forwardRef<HTMLButtonElement, Props>(
-  ({ menu, className, ...props }, ref) => {
+  ({ menu, isActive, className, ...props }, ref) => {
     const onClick = () => {
-      if (props.isActive) return;
+      if (isActive) return;
       navigate(menu.path);
     };
 
     return (
       <button
+        ref={ref}
         onClick={onClick}
         className={twMerge(
           "flex flex-col items-center justify-center p-4",
-          props.isActive ? "" : "hover:bg-red-200",
-          props.isActive ? "text-indigo-500" : "text-gray-700",
-          props.isActive ? "" : "cursor-pointer",
+          isActive ? "" : "hover:bg-red-200",
+          isActive ? "text-indigo-500" : "text-gray-700",
+          isActive ? "" : "cursor-pointer",
           className,
         )}
+        {...props}
       >
         <menu.icon className="text-lg" />
         <span className="text-xs">{menu.name}</span>
@@ -30,5 +35,7 @@ const Menu = forwardRef<HTMLButtonElement, Props>(
     );
   },
 );
+
+Menu.displayName = "Menu";
 
 export default Menu;
