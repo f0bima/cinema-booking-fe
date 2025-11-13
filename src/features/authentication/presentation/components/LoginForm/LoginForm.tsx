@@ -4,13 +4,15 @@ import { useForm } from "react-hook-form";
 import FormMessage from "../../../../../common/presentation/component/FormMessage/FormMessage";
 import PasswordInput from "../../../../../common/presentation/component/PasswordInput/PasswordInput";
 
-import { loginSchema, type TLoginRequest } from "../../schema/login.schema";
-import { toast } from "sonner";
-import { navigate } from "astro:transitions/client";
 import { PROXY_API } from "@/common/infrastructure/datasource/proxyApi";
-import Input from "@/common/presentation/component/Input/Input";
-import FormGroup from "@/common/presentation/component/FormGroup/FormGroup";
+import { errorUtils } from "@/common/libs/utils/error.utils";
 import Button from "@/common/presentation/component/Button/Button";
+import FormGroup from "@/common/presentation/component/FormGroup/FormGroup";
+import Input from "@/common/presentation/component/Input/Input";
+import type { TAuthUser } from "@/features/authentication/domain/entity/authUser.entity";
+import { navigate } from "astro:transitions/client";
+import { toast } from "sonner";
+import { loginSchema, type TLoginRequest } from "../../schema/login.schema";
 
 const LoginForm = () => {
   const {
@@ -29,11 +31,16 @@ const LoginForm = () => {
   const onLogin = (loginRequest: TLoginRequest) => {
     PROXY_API.post("/auth/login", loginRequest)
       .then(async (res) => {
-        toast.info("success login");
-        navigate("/");
+        const authUser = res as any as TAuthUser;
+
+        const isAdmin = authUser.user.role === "admin";
+        const redirectUrl = isAdmin ? "/admin" : "/";
+
+        navigate(redirectUrl);
       })
       .catch((error) => {
-        toast.error(error.data);
+        const message = errorUtils.getErrorAPIMessage(error);
+        toast.error(message);
       });
   };
 

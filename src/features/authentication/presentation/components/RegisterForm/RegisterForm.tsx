@@ -1,9 +1,12 @@
+import { errorUtils } from "@/common/libs/utils/error.utils";
 import Button from "@/common/presentation/component/Button/Button";
 import FormGroup from "@/common/presentation/component/FormGroup/FormGroup";
 import Input from "@/common/presentation/component/Input/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { navigate } from "astro:transitions/client";
 import { useForm } from "react-hook-form";
-import { API } from "../../../../../common/infrastructure/datasource/api";
+import { toast } from "sonner";
+import { API_GATEWAY } from "../../../../../common/infrastructure/datasource/apiGateway";
 import FormMessage from "../../../../../common/presentation/component/FormMessage/FormMessage";
 import PasswordInput from "../../../../../common/presentation/component/PasswordInput/PasswordInput";
 import { registerUsecase } from "../../../application/usecase/register.usecase";
@@ -12,10 +15,8 @@ import {
   registerSchema,
   type TRegisterReguest,
 } from "../../schema/register.schema";
-import { toast } from "sonner";
-import { navigate } from "astro:transitions/client";
 
-const authRepo = authenticationDatasource({ api: API });
+const authRepo = authenticationDatasource({ api: API_GATEWAY });
 
 const RegisterForm = () => {
   const {
@@ -39,7 +40,8 @@ const RegisterForm = () => {
         navigate("/auth/login");
       })
       .catch((err) => {
-        toast.error(err.data);
+        const message = errorUtils.getErrorAPIMessage(err);
+        toast.error(message);
       });
   };
   return (

@@ -1,11 +1,40 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import LogoutButton from "@/features/authentication/presentation/components/LogoutButton/LogoutButton";
+import {
+  userSchema,
+  type TUser,
+} from "@/features/authentication/domain/entity/user.entity";
+
+const userFromCookies = Astro.cookies.get("user")?.value;
+let user: TUser;
+try {
+  const userParse = userSchema.safeParse(JSON.parse(userFromCookies));
+  user = userParse.data;
+} catch (error) {
+  console.error("Error parseu user ");
+}
 ---
 
 <Layout>
-  <section class="space-y-8">
+  <section class="space-y-8 w-full">
     <h1 class="text-5xl">My Profile</h1>
-    <LogoutButton client:load />
+    {
+      user && (
+        <section class="profile-detail">
+          <p>
+            <span class="font-semibold">Name :</span> {user.name}
+          </p>
+          <p>
+            <span class="font-semibold">Email:</span> {user.email}
+          </p>
+          <p>
+            <span class="font-semibold">Role :</span> {user.role}
+          </p>
+        </section>
+      )
+    }
+
+    <LogoutButton className="w-full" client:load />
   </section>
 </Layout>

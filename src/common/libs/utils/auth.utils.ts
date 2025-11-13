@@ -1,7 +1,19 @@
+import { userSchema } from "@/features/authentication/domain/entity/user.entity";
+import type { AstroCookies } from "astro";
+
 export const authUtils = {
-  getToken: ({ request }: { request: Request }) => {
-    const cookie = request.headers.get("cookie");
-    const token = cookie?.match(/token=([^;]+)/)?.[1];
+  getToken: ({ cookies }: { cookies: AstroCookies }) => {
+    const token = cookies.get("token")?.value;
     return token;
+  },
+  getUser: ({ cookies }: { cookies: AstroCookies }) => {
+    const userFromCookies = cookies.get("user")?.value;
+    try {
+      const userParse = userSchema.safeParse(JSON.parse(userFromCookies));
+      return userParse?.data;
+    } catch (error) {
+      console.error("Error parse user ");
+      return null;
+    }
   },
 };

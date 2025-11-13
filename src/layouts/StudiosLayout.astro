@@ -1,11 +1,11 @@
 ---
-import { undefined } from "astro:schema";
-import { API } from "../common/infrastructure/datasource/api";
+import { RiMovie2AiLine } from "react-icons/ri";
+import { API_GATEWAY } from "../common/infrastructure/datasource/apiGateway";
 import { cinemaDatasource } from "../features/cinema/infrastructure/datasource/cinema.datasource";
 import { getStudiosUsecase } from "../features/dashboard/application/usecase/getStudios.usecase";
-import StudioCard from "../features/dashboard/presentation/components/StudioCard/StudioCard";
-import { RiMovie2AiLine } from "react-icons/ri";
-const repository = cinemaDatasource({ api: API });
+import Studios from "../features/dashboard/presentation/components/Studios/Studios";
+
+const repository = cinemaDatasource({ api: API_GATEWAY });
 const studios = await getStudiosUsecase({ repo: repository }).execute();
 
 const { title } = Astro.props;
@@ -20,17 +20,12 @@ console.log(pathname);
       <RiMovie2AiLine />
       <h3 class="text-muted-foreground">Available Studio</h3>
     </div>
-    <div class="grid grid-cols-2 gap-4">
-      {
-        studios.map((studio) => (
-          <StudioCard
-            studio={studio}
-            baseUrl={pathname !== "/" ? pathname : ""}
-            client:load
-          />
-        ))
-      }
-    </div>
+    <Studios
+      studios={studios}
+      baseUrl={pathname !== "/" ? pathname : ""}
+      client:load
+    />
+
+    <slot />
   </div>
-  <slot />
 </section>

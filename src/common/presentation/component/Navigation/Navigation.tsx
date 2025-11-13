@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react";
 import { IoHome, IoPerson, IoTicket } from "react-icons/io5";
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 
-type Props = { currentPathname: string };
+type Props = { currentPathname: string; role: "admin" | "customer" };
 
 const Navigation = (props: Props) => {
   const isActive = useCallback(
@@ -15,7 +15,7 @@ const Navigation = (props: Props) => {
   );
 
   const menus = useMemo(() => {
-    const isAdminPage = props.currentPathname.startsWith("/admin");
+    const isAdmin = props.role === "admin";
 
     const userMenus: TMenu[] = [
       { path: "/", name: "Home", icon: IoHome },
@@ -30,9 +30,10 @@ const Navigation = (props: Props) => {
         name: "Ticket Scanner",
         icon: MdOutlineQrCodeScanner,
       },
+      { path: "/profile", name: "Profile", icon: IoPerson },
     ];
-    return isAdminPage ? adminMenus : userMenus;
-  }, [props.currentPathname]);
+    return isAdmin ? adminMenus : userMenus;
+  }, [props.role]);
 
   return (
     <nav className="shadow-lg-up fixed bottom-0 z-50 flex h-16 w-full max-w-md items-center justify-between gap-4 bg-white">

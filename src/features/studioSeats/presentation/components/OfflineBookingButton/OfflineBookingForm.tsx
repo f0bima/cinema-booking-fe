@@ -1,4 +1,5 @@
-import { API } from "@/common/infrastructure/datasource/api";
+import { API_GATEWAY } from "@/common/infrastructure/datasource/apiGateway";
+import { errorUtils } from "@/common/libs/utils/error.utils";
 import Button from "@/common/presentation/component/Button/Button";
 import FormGroup from "@/common/presentation/component/FormGroup/FormGroup";
 import FormMessage from "@/common/presentation/component/FormMessage/FormMessage";
@@ -11,7 +12,6 @@ import {
 } from "@/features/studioSeats/presentation/schema/offlineBooking.schema";
 import QRModalViewer from "@/features/tickets/presentation/components/QRModalViewer/QRModalViewer";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { navigate } from "astro:transitions/client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoPrint } from "react-icons/io5";
@@ -19,7 +19,7 @@ import { toast } from "sonner";
 
 type Props = { studioId: number; seatIds: number[] };
 
-const bookingRepo = bookingDatasource({ api: API });
+const bookingRepo = bookingDatasource({ api: API_GATEWAY });
 
 const OfflineBookingForm = (props: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -50,7 +50,10 @@ const OfflineBookingForm = (props: Props) => {
         console.log(response);
         setTicketQRCode(response.qrCode);
       })
-      .catch((err) => toast.error(err.data));
+      .catch((err) => {
+        const message = errorUtils.getErrorAPIMessage(err);
+        toast.error(message);
+      });
   };
   return (
     <>
@@ -90,7 +93,7 @@ const OfflineBookingForm = (props: Props) => {
             }}
             className="w-full flex-1"
           >
-            Goto your tickets
+            Close
           </Button>
         </div>
       </QRModalViewer>

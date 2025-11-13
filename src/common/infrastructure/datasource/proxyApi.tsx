@@ -1,16 +1,7 @@
+import type { TApiError } from "@/common/domain/apiError.entity";
 import axios from "axios";
 
 const baseUrl = "/api";
-
-export type TErrorData = {
-  code: string;
-  message: string;
-  errors: { field: string; message: string }[];
-};
-
-export type TApiError = Error & {
-  data?: TErrorData;
-};
 
 export const PROXY_API = axios.create({
   baseURL: `${baseUrl}`,
@@ -29,26 +20,24 @@ PROXY_API.interceptors.request.use(
 
 PROXY_API.interceptors.response.use(
   (response) => {
-    console.log("Response received:", response.data);
     return response.data;
   },
   (error) => {
-    let errorData;
+    let message;
+    const statusCode = error?.response?.status ?? 500;
 
+    console.log(error.response.status);
     if (error.response) {
-      console.error("Error response:", error.response.data.error);
-      errorData = error?.response?.data?.error;
+      message = error?.response?.data?.error;
     } else if (error.request) {
-      console.error("No response received:", error.request);
-      errorData = error?.request;
+      message = error?.request;
     } else {
-      console.error("Axios error:", error.message);
-      errorData = error?.message;
+      message = error?.message;
     }
 
     return Promise.reject({
       ...error,
-      data: errorData,
+      data: { message, code: statusCode },
     } as TApiError);
   },
 );

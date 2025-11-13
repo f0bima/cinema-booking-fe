@@ -6,6 +6,7 @@ const CinemaScreen = forwardRef<HTMLDivElement, Props>(
   ({ className, ...props }, ref) => {
     return (
       <section
+        data-testid="cinema-screen"
         className={twMerge(
           "cinema-screen flex flex-col items-center",
           className,

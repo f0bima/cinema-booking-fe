@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 
 import RegisterForm from "../../features/authentication/presentation/components/RegisterForm/RegisterForm";
+import GoogleSSOButton from "../../features/authentication/presentation/components/GoogleSSOButton/GoogleSSOButton";
 ---
 
 <Layout>
@@ -14,5 +15,6 @@ import RegisterForm from "../../features/authentication/presentation/components/
         >Log in</a
       >
     </p>
+    <GoogleSSOButton client:load />
   </section>
 </Layout>

@@ -1,5 +1,5 @@
 ---
-import { API } from "@/common/infrastructure/datasource/api";
+import { API_GATEWAY } from "@/common/infrastructure/datasource/apiGateway";
 import { cinemaDatasource } from "@/features/cinema/infrastructure/datasource/cinema.datasource";
 import { getStudioSeatsUsecase } from "@/features/dashboard/application/usecase/getStudioSeats.usecase";
 import CinemaFloorPlan from "@/features/studioSeats/presentation/components/CinemaFloorPlan/CinemaFloorPlan";
@@ -8,7 +8,7 @@ const params = Astro.params;
 
 const studioId = parseInt(params.studioId);
 
-const repository = cinemaDatasource({ api: API });
+const repository = cinemaDatasource({ api: API_GATEWAY });
 const seats = await getStudioSeatsUsecase({ repo: repository }).execute({
   studioId: studioId,
 });

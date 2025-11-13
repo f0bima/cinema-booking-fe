@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/common/presentation/component/shadcn/ui/dialog";
 import BookingSeatsButton from "@/features/studioSeats/presentation/components/BookingSeatsButton/BookingSeatsButton";
 import OfflineBookingForm from "@/features/studioSeats/presentation/components/OfflineBookingButton/OfflineBookingForm";
 import { useState } from "react";
