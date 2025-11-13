@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/23</span>
+                <span class='fraction'>0/26</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/23</span>
+                <span class='fraction'>0/26</span>
             </div>
         
             
@@ -92,7 +92,11 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -100,8 +104,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -121,17 +123,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { API } from "@/common/infrastructure/datasource/api";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { API_GATEWAY } from "@/common/infrastructure/datasource/apiGateway";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >import { authUtils } from "@/common/libs/utils/auth.utils";</span>
+<span class="cstat-no" title="statement not covered" >import { errorUtils } from "@/common/libs/utils/error.utils";</span>
 <span class="cstat-no" title="statement not covered" >import { bookingDatasource } from "@/features/booking/infrastructure/datasource/booking.datasource";</span>
 <span class="cstat-no" title="statement not covered" >import { onlineBookingSeatUsecase } from "@/features/studioSeats/application/onlineBookingSeat.usecase";</span>
 import type { APIRoute } from "astro";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const bookingRepo = bookingDatasource({ api: API });</span>
+<span class="cstat-no" title="statement not covered" >const bookingRepo = bookingDatasource({ api: API_GATEWAY });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export const POST: APIRoute = async ({ request, cookies }) =&gt; {</span>
-  // const token = authUtils.getToken({ request });
-<span class="cstat-no" title="statement not covered" >  const token = cookies.get("token")?.value;</span>
-<span class="cstat-no" title="statement not covered" >  console.log({ token });</span>
+<span class="cstat-no" title="statement not covered" >  const token = authUtils.getToken({ cookies });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  const { seatIds, studioId } = await request.json();</span>
 &nbsp;
@@ -145,8 +149,10 @@ import type { APIRoute } from "astro";
 <span class="cstat-no" title="statement not covered" >      return new Response(JSON.stringify(response));</span>
 <span class="cstat-no" title="statement not covered" >    })</span>
 <span class="cstat-no" title="statement not covered" >    .catch((error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      return new Response(JSON.stringify({ error: error.data }), {</span>
-<span class="cstat-no" title="statement not covered" >        status: 400,</span>
+<span class="cstat-no" title="statement not covered" >      const message = errorUtils.getErrorAPIMessage(error);</span>
+<span class="cstat-no" title="statement not covered" >      const statusCode = errorUtils.getErrorAPIStatusCode(error);</span>
+<span class="cstat-no" title="statement not covered" >      return new Response(JSON.stringify({ error: message }), {</span>
+<span class="cstat-no" title="statement not covered" >        status: statusCode,</span>
 <span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >};</span>
@@ -157,7 +163,7 @@ import type { APIRoute } from "astro";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

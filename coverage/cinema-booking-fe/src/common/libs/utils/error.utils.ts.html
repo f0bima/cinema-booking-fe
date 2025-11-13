@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for cinema-booking-fe/src/pages/api/auth/google-sso.ts</title>
+    <title>Code coverage report for cinema-booking-fe/src/common/libs/utils/error.utils.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">cinema-booking-fe/src/pages/api/auth</a> google-sso.ts</h1>
+        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">cinema-booking-fe/src/common/libs/utils</a> error.utils.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -73,16 +73,7 @@
 <a name='L8'></a><a href='#L8'>8</a>
 <a name='L9'></a><a href='#L9'>9</a>
 <a name='L10'></a><a href='#L10'>10</a>
-<a name='L11'></a><a href='#L11'>11</a>
-<a name='L12'></a><a href='#L12'>12</a>
-<a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L11'></a><a href='#L11'>11</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -92,33 +83,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { APIRoute } from "astro";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { TApiError } from "@/common/domain/apiError.entity";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const GET: APIRoute = async () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const params = new URLSearchParams({</span>
-<span class="cstat-no" title="statement not covered" >    client_id: import.meta.env.GOOGLE_CLIENT_ID,</span>
-<span class="cstat-no" title="statement not covered" >    redirect_uri: import.meta.env.GOOGLE_REDIRECT_URI,</span>
-<span class="cstat-no" title="statement not covered" >    response_type: "code",</span>
-<span class="cstat-no" title="statement not covered" >    scope: "openid email profile",</span>
-<span class="cstat-no" title="statement not covered" >    access_type: "offline",</span>
-<span class="cstat-no" title="statement not covered" >    prompt: "consent",</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return new Response(null, {</span>
-<span class="cstat-no" title="statement not covered" >    status: 302,</span>
-<span class="cstat-no" title="statement not covered" >    headers: {</span>
-<span class="cstat-no" title="statement not covered" >      Location: `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`,</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
+<span class="cstat-no" title="statement not covered" >export const errorUtils = {</span>
+<span class="cstat-no" title="statement not covered" >  getErrorAPIMessage: (error: TApiError | any) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return error?.data?.message ?? error.message;</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  getErrorAPIStatusCode: (error: TApiError | any) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return error?.data?.code ?? 500;</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -127,7 +100,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

@@ -5,7 +5,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/common/presentation/component/shadcn/ui/dialog";
 import QRCodeViewer from "@/features/tickets/presentation/components/QRCodeViewer/QRCodeViewer";
 import type { DialogProps } from "@radix-ui/react-dialog";
 import type { FC } from "react";

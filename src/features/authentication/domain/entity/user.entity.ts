@@ -11,7 +11,7 @@ export const userSchema = z.object({
   id: z.number(),
   email: z.email(),
   name: z.string().min(3),
-  role: z.enum(["customer", "admin"]),
+  role: z.string(),
 });
 
 export type TUser = z.infer<typeof userSchema>;

@@ -1,17 +1,17 @@
 ---
 import { authUtils } from "@/common/libs/utils/auth.utils";
 import Layout from "@/layouts/Layout.astro";
-import { API } from "../common/infrastructure/datasource/api";
+import { API_GATEWAY } from "../common/infrastructure/datasource/apiGateway";
 import { bookingDatasource } from "../features/booking/infrastructure/datasource/booking.datasource";
 
-import { getTicketsUsecase } from "../features/tickets/application/usecase/getTickets.usecase";
-import TicketsComponent from "../features/tickets/presentation/components/Ticket/Tickets";
 import { IoTicket } from "react-icons/io5";
 import { LuHistory } from "react-icons/lu";
+import { getTicketsUsecase } from "../features/tickets/application/usecase/getTickets.usecase";
+import TicketsComponent from "../features/tickets/presentation/components/Ticket/Tickets";
 
-const bookingRepo = bookingDatasource({ api: API });
+const bookingRepo = bookingDatasource({ api: API_GATEWAY });
 
-const token = authUtils.getToken({ request: Astro.request });
+const token = authUtils.getToken({ cookies: Astro.cookies });
 
 const tickets = await getTicketsUsecase({ repo: bookingRepo }).execute({
   token,

@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/common/presentation/component/shadcn/ui/badge";
 import type { TBookingValidation } from "@/features/booking/domain/entity/bookingValidation.entity";
 
 type Props = { bookingInfo?: TBookingValidation };

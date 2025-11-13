@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>46/46</span>
+                <span class='fraction'>53/53</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>46/46</span>
+                <span class='fraction'>53/53</span>
             </div>
         
             
@@ -117,7 +117,15 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -134,6 +142,7 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -167,11 +176,17 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Badge } from "@/components/ui/badge";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { dateUtils } from "@/common/libs/utils/date.utils";
+import { Badge } from "@/common/presentation/component/shadcn/ui/badge";
 import type { TTicket } from "@/features/booking/domain/entity/ticket.entity";
 import Seat from "@/features/studioSeats/presentation/components/SeatsConfiguration/Seat";
 import QRCodeViewer from "@/features/tickets/presentation/components/QRCodeViewer/QRCodeViewer";
@@ -186,34 +201,40 @@ const Ticket = ({ ticket }: Props) =&gt; {
     &lt;&gt;
       &lt;div
         onClick={() =&gt; setIsShowQR(true)}
-        className="ticket flex w-full cursor-pointer justify-between gap-2 rounded-lg p-2 shadow-lg"
+        className="ticket flex w-full cursor-pointer flex-col justify-between gap-2 rounded-lg p-2 shadow-lg"
       &gt;
-        &lt;div className="flex flex-col items-center"&gt;
-          &lt;p&gt;Studio&lt;/p&gt;
-          &lt;h3 data-testid="studio" className="text-5xl"&gt;
-            {ticket.studioId}
-          &lt;/h3&gt;
-        &lt;/div&gt;
-        &lt;div className="grow text-center"&gt;
-          &lt;p&gt;Seats&lt;/p&gt;
-          &lt;div className="flex justify-center gap-2" data-testid="seats"&gt;
-            {ticket.seatIds.map((seat) =&gt; (
-              &lt;Seat key={seat} seatNumber={seat.toString()} /&gt;
-            ))}
+        &lt;div className="flex gap-2"&gt;
+          &lt;div className="flex flex-col items-center"&gt;
+            &lt;p&gt;Studio&lt;/p&gt;
+            &lt;h3 data-testid="studio" className="text-5xl"&gt;
+              {ticket.studioId}
+            &lt;/h3&gt;
+          &lt;/div&gt;
+          &lt;div className="grow text-center"&gt;
+            &lt;p&gt;Seats&lt;/p&gt;
+            &lt;div className="flex justify-center gap-2" data-testid="seats"&gt;
+              {ticket.seatIds.map((seat) =&gt; (
+                &lt;Seat key={seat} seatNumber={seat.toString()} /&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div className="flex flex-col items-center"&gt;
+            &lt;Badge
+              data-testid="status"
+              variant={ticket.status === "active" ? <span class="branch-0 cbranch-no" title="branch not covered" >"secondary" : "destructive"}</span>
+              className="uppercase"
+            &gt;
+              {ticket.status}
+            &lt;/Badge&gt;
+            &lt;div className="aspect-square w-12"&gt;
+              &lt;QRCodeViewer qrBase64={ticket.qrCode} /&gt;
+            &lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div className="flex flex-col items-center"&gt;
-          &lt;Badge
-            data-testid="status"
-            variant={ticket.status === "active" ? <span class="branch-0 cbranch-no" title="branch not covered" >"secondary" : "destructive"}</span>
-            className="uppercase"
-          &gt;
-            {ticket.status}
-          &lt;/Badge&gt;
-          &lt;div className="aspect-square w-12"&gt;
-            &lt;QRCodeViewer qrBase64={ticket.qrCode} /&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
+        &lt;p className=""&gt;
+          &lt;span className="font-semibold"&gt;Booked on :&lt;/span&gt;{" "}
+          {dateUtils.toString({ date: ticket.createdAt })}
+        &lt;/p&gt;
       &lt;/div&gt;
       &lt;QRModalViewer
         open={isShowQR}
@@ -232,7 +253,7 @@ export default Ticket;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../../../../../../prettify.js"></script>
         <script>

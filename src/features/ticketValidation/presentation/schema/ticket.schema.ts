@@ -5,5 +5,5 @@ export const ticketSchema = z.object({
   seatIds: z.array(z.number()).min(1),
   studioId: z.number(),
   timestamp: z.coerce.date(),
-  userId: z.number(),
+  userId: z.number().optional(),
 });

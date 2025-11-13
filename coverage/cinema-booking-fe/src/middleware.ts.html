@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>0/28</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>0/28</span>
             </div>
         
             
@@ -93,7 +93,30 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -103,15 +126,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -128,24 +142,31 @@
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export const onRequest = defineMiddleware(</span>
 <span class="cstat-no" title="statement not covered" >  async ({ request, redirect, url, cookies }, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const protectedRoutes = ["/tickets", "/studio-seats", "/profile"];</span>
 <span class="cstat-no" title="statement not covered" >    const pathname = url.pathname;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    const token = authUtils.getToken({ request });</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >    const isHomePage = pathname === "/";</span>
-    // const isAuthPage = pathname.startsWith("/auth") &amp;&amp; pathname !== "/auth/logout";
+<span class="cstat-no" title="statement not covered" >    const isAdminPage = pathname.startsWith("/admin");</span>
+<span class="cstat-no" title="statement not covered" >    const isProfilePage = pathname.startsWith("/profile");</span>
 <span class="cstat-no" title="statement not covered" >    const isAuthPage = pathname.startsWith("/auth");</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    console.log({ middlewareToken: token, pathname });</span>
-<span class="cstat-no" title="statement not covered" >    if (isAuthPage &amp;&amp; token) return redirect("/");</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    const isProtectedRoutes = protectedRoutes.find((protectedRoute) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >      pathname.startsWith(protectedRoute),</span>
+<span class="cstat-no" title="statement not covered" >    const customerPages = ["/tickets", "/studio-seats"];</span>
+<span class="cstat-no" title="statement not covered" >    const isCustomerPage = customerPages.find((customerPage) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >      pathname.startsWith(customerPage),</span>
 <span class="cstat-no" title="statement not covered" >    );</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if ((isHomePage || isProtectedRoutes) &amp;&amp; !token)</span>
-<span class="cstat-no" title="statement not covered" >      return redirect("/auth/login");</span>
+<span class="cstat-no" title="statement not covered" >    const isProtectedRoutes =</span>
+<span class="cstat-no" title="statement not covered" >      isCustomerPage || isAdminPage || isHomePage || isProfilePage;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const token = authUtils.getToken({ cookies });</span>
+<span class="cstat-no" title="statement not covered" >    const user = authUtils.getUser({ cookies });</span>
+<span class="cstat-no" title="statement not covered" >    const isCustomer = user?.role === "customer";</span>
+<span class="cstat-no" title="statement not covered" >    const isAdmin = user?.role === "admin";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (isProtectedRoutes &amp;&amp; !token) return redirect("/auth/login");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (isAuthPage &amp;&amp; token) return redirect("/");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (isCustomer &amp;&amp; isAdminPage) return redirect("/");</span>
+<span class="cstat-no" title="statement not covered" >    if (isAdmin &amp;&amp; (isCustomerPage || isHomePage)) return redirect("/admin");</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (request.url.includes("/login") || request.url.includes("/api/auth"))</span>
 <span class="cstat-no" title="statement not covered" >      return next();</span>
@@ -160,7 +181,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

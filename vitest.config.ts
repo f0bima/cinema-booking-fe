@@ -32,7 +32,8 @@ export default getViteConfig(
           "**/__tests__/**",
           "**/build/**",
           // SHADCN UI
-          "src/components/ui/**",
+
+          "src/common/presentation/component/shadcn/ui/**",
         ],
       },
     },

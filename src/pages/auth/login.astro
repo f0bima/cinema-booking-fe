@@ -4,9 +4,8 @@ import Layout from "@/layouts/Layout.astro";
 import LoginForm from "../../features/authentication/presentation/components/LoginForm/LoginForm";
 import GoogleSSOButton from "../../features/authentication/presentation/components/GoogleSSOButton/GoogleSSOButton";
 
-const cookies = Astro.request.headers.get("cookie") || "";
-const userMatch = cookies.match(/(?:^|;\s*)google-user=([^;]+)/);
-const user = userMatch ? JSON.parse(decodeURIComponent(userMatch[1])) : null;
+// const { searchParams } = Astro.url;
+// const name = searchParams.get("message");
 ---
 
 <Layout>

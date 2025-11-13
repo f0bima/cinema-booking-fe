@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for cinema-booking-fe/src/pages/api/auth/callback.ts</title>
+    <title>Code coverage report for cinema-booking-fe/src/common/infrastructure/datasource/apiGateway.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">cinema-booking-fe/src/pages/api/auth</a> callback.ts</h1>
+        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">cinema-booking-fe/src/common/infrastructure/datasource</a> apiGateway.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>0/36</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>0/36</span>
             </div>
         
             
@@ -99,22 +99,14 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -122,9 +114,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -135,42 +124,74 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { APIRoute } from "astro";
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { TApiError } from "@/common/domain/apiError.entity";
+<span class="cstat-no" title="statement not covered" >import axios from "axios";</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const GET: APIRoute = async ({ url, redirect }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const code = url.searchParams.get("code");</span>
-<span class="cstat-no" title="statement not covered" >  if (!code) return new Response("Missing code", { status: 400 });</span>
+<span class="cstat-no" title="statement not covered" >const baseUrl = import.meta.env.PUBLIC_BE_BASE_URL;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const tokenRes = await fetch("https://oauth2.googleapis.com/token", {</span>
-<span class="cstat-no" title="statement not covered" >    method: "POST",</span>
-<span class="cstat-no" title="statement not covered" >    headers: { "Content-Type": "application/x-www-form-urlencoded" },</span>
-<span class="cstat-no" title="statement not covered" >    body: new URLSearchParams({</span>
-<span class="cstat-no" title="statement not covered" >      code,</span>
-<span class="cstat-no" title="statement not covered" >      client_id: import.meta.env.GOOGLE_CLIENT_ID,</span>
-<span class="cstat-no" title="statement not covered" >      client_secret: import.meta.env.GOOGLE_CLIENT_SECRET,</span>
-<span class="cstat-no" title="statement not covered" >      redirect_uri: import.meta.env.GOOGLE_REDIRECT_URI,</span>
-<span class="cstat-no" title="statement not covered" >      grant_type: "authorization_code",</span>
-<span class="cstat-no" title="statement not covered" >    }),</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
+<span class="cstat-no" title="statement not covered" >export const API_GATEWAY = axios.create({</span>
+<span class="cstat-no" title="statement not covered" >  baseURL: `${baseUrl}`,</span>
+<span class="cstat-no" title="statement not covered" >  timeout: 5000,</span>
+<span class="cstat-no" title="statement not covered" >});</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const tokens = await tokenRes.json();</span>
+<span class="cstat-no" title="statement not covered" >API_GATEWAY.interceptors.request.use(</span>
+<span class="cstat-no" title="statement not covered" >  (config) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return config;</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  (error) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    console.error("Request error:", error);</span>
+<span class="cstat-no" title="statement not covered" >    return Promise.reject(error);</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const userRes = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {</span>
-<span class="cstat-no" title="statement not covered" >    headers: { Authorization: `Bearer ${tokens.access_token}` },</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
+<span class="cstat-no" title="statement not covered" >API_GATEWAY.interceptors.response.use(</span>
+<span class="cstat-no" title="statement not covered" >  (response) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    console.log("Response received:", response.data);</span>
+<span class="cstat-no" title="statement not covered" >    return response;</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  (error) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    let message;</span>
+<span class="cstat-no" title="statement not covered" >    const statusCode = error?.response?.status ?? 500;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const user = await userRes.json();</span>
+<span class="cstat-no" title="statement not covered" >    if (error.response) {</span>
+<span class="cstat-no" title="statement not covered" >      message = error?.response?.data?.error;</span>
+<span class="cstat-no" title="statement not covered" >    } else if (error.request) {</span>
+<span class="cstat-no" title="statement not covered" >      message = error?.request;</span>
+<span class="cstat-no" title="statement not covered" >    } else {</span>
+<span class="cstat-no" title="statement not covered" >      message = error?.message;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const cookie = `google-user=${encodeURIComponent(JSON.stringify(user))}; Path=/; HttpOnly`;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return new Response(null, {</span>
-<span class="cstat-no" title="statement not covered" >    status: 302,</span>
-<span class="cstat-no" title="statement not covered" >    headers: {</span>
-<span class="cstat-no" title="statement not covered" >      "Set-Cookie": cookie,</span>
-<span class="cstat-no" title="statement not covered" >      Location: "/",</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" >    return Promise.reject({</span>
+<span class="cstat-no" title="statement not covered" >      ...error,</span>
+<span class="cstat-no" title="statement not covered" >      data: { message, code: statusCode },</span>
+<span class="cstat-no" title="statement not covered" >    } as TApiError);</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >);</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -178,7 +199,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

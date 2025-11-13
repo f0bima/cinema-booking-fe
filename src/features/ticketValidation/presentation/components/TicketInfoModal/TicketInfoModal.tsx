@@ -5,7 +5,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/common/presentation/component/shadcn/ui/dialog";
 import type { TBookingValidation } from "@/features/booking/domain/entity/bookingValidation.entity";
 import BookingInfo from "@/features/ticketValidation/presentation/components/TicketInfoModal/BookingInfo";
 import type { DialogProps } from "@radix-ui/react-dialog";

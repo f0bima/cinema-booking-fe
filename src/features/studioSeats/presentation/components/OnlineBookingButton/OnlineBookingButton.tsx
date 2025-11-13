@@ -1,4 +1,5 @@
 import { PROXY_API } from "@/common/infrastructure/datasource/proxyApi";
+import { errorUtils } from "@/common/libs/utils/error.utils";
 import Button from "@/common/presentation/component/Button/Button";
 import type { TTicket } from "@/features/booking/domain/entity/ticket.entity";
 import QRModalViewer from "@/features/tickets/presentation/components/QRModalViewer/QRModalViewer";
@@ -22,7 +23,8 @@ const OnlineBookingButton = (props: Props) => {
         toast.success("Success booking seats");
       })
       .catch((err) => {
-        toast.success(err.data);
+        const message = errorUtils.getErrorAPIMessage(err);
+        toast.error(message);
       });
   };
 

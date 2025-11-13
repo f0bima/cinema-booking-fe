@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -94,18 +94,13 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,28 +116,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >---<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { undefined } from "astro:schema";</span>
-<span class="cstat-no" title="statement not covered" >import { API } from "../common/infrastructure/datasource/api";</span>
+<span class="cstat-no" title="statement not covered" >import { RiMovie2AiLine } from "react-icons/ri";</span>
+<span class="cstat-no" title="statement not covered" >import { API_GATEWAY } from "../common/infrastructure/datasource/apiGateway";</span>
 <span class="cstat-no" title="statement not covered" >import { cinemaDatasource } from "../features/cinema/infrastructure/datasource/cinema.datasource";</span>
 <span class="cstat-no" title="statement not covered" >import { getStudiosUsecase } from "../features/dashboard/application/usecase/getStudios.usecase";</span>
-<span class="cstat-no" title="statement not covered" >import StudioCard from "../features/dashboard/presentation/components/StudioCard/StudioCard";</span>
-<span class="cstat-no" title="statement not covered" >import { RiMovie2AiLine } from "react-icons/ri";</span>
-<span class="cstat-no" title="statement not covered" >const repository = cinemaDatasource({ api: API });</span>
+<span class="cstat-no" title="statement not covered" >import Studios from "../features/dashboard/presentation/components/Studios/Studios";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const repository = cinemaDatasource({ api: API_GATEWAY });</span>
 <span class="cstat-no" title="statement not covered" >const studios = await getStudiosUsecase({ repo: repository }).execute();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const { title } = Astro.props;</span>
@@ -157,19 +147,14 @@
 <span class="cstat-no" title="statement not covered" >      &lt;RiMovie2AiLine /&gt;</span>
       &lt;h3 class="text-muted-foreground"&gt;Available Studio&lt;/h3&gt;
     &lt;/div&gt;
-    &lt;div class="grid grid-cols-2 gap-4"&gt;
-<span class="cstat-no" title="statement not covered" >      {</span>
-<span class="cstat-no" title="statement not covered" >        studios.map((studio) =&gt; (</span>
-          &lt;StudioCard
-<span class="cstat-no" title="statement not covered" >            studio={studio}</span>
-<span class="cstat-no" title="statement not covered" >            baseUrl={pathname !== "/" ? pathname : ""}</span>
-<span class="cstat-no" title="statement not covered" >            client:load</span>
-          /&gt;
-<span class="cstat-no" title="statement not covered" >        ))</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-    &lt;/div&gt;
+<span class="cstat-no" title="statement not covered" >    &lt;Studios</span>
+<span class="cstat-no" title="statement not covered" >      studios={studios}</span>
+<span class="cstat-no" title="statement not covered" >      baseUrl={pathname !== "/" ? pathname : ""}</span>
+<span class="cstat-no" title="statement not covered" >      client:load</span>
+    /&gt;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    &lt;slot /&gt;</span>
   &lt;/div&gt;
-<span class="cstat-no" title="statement not covered" >  &lt;slot /&gt;</span>
 &lt;/section&gt;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -178,7 +163,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

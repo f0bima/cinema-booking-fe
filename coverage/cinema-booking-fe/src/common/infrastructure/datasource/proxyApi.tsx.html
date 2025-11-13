@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/38</span>
+                <span class='fraction'>0/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/38</span>
+                <span class='fraction'>0/36</span>
             </div>
         
             
@@ -106,30 +106,10 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -162,8 +142,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -171,19 +149,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import axios from "axios";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { TApiError } from "@/common/domain/apiError.entity";
+<span class="cstat-no" title="statement not covered" >import axios from "axios";</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const baseUrl = "/api";</span>
-&nbsp;
-export type TErrorData = {
-  code: string;
-  message: string;
-  errors: { field: string; message: string }[];
-};
-&nbsp;
-export type TApiError = Error &amp; {
-  data?: TErrorData;
-};
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export const PROXY_API = axios.create({</span>
 <span class="cstat-no" title="statement not covered" >  baseURL: `${baseUrl}`,</span>
@@ -202,26 +171,24 @@ export type TApiError = Error &amp; {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >PROXY_API.interceptors.response.use(</span>
 <span class="cstat-no" title="statement not covered" >  (response) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    console.log("Response received:", response.data);</span>
 <span class="cstat-no" title="statement not covered" >    return response.data;</span>
 <span class="cstat-no" title="statement not covered" >  },</span>
 <span class="cstat-no" title="statement not covered" >  (error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    let errorData;</span>
+<span class="cstat-no" title="statement not covered" >    let message;</span>
+<span class="cstat-no" title="statement not covered" >    const statusCode = error?.response?.status ?? 500;</span>
 &nbsp;
+<span class="cstat-no" title="statement not covered" >    console.log(error.response.status);</span>
 <span class="cstat-no" title="statement not covered" >    if (error.response) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Error response:", error.response.data.error);</span>
-<span class="cstat-no" title="statement not covered" >      errorData = error?.response?.data?.error;</span>
+<span class="cstat-no" title="statement not covered" >      message = error?.response?.data?.error;</span>
 <span class="cstat-no" title="statement not covered" >    } else if (error.request) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("No response received:", error.request);</span>
-<span class="cstat-no" title="statement not covered" >      errorData = error?.request;</span>
+<span class="cstat-no" title="statement not covered" >      message = error?.request;</span>
 <span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Axios error:", error.message);</span>
-<span class="cstat-no" title="statement not covered" >      errorData = error?.message;</span>
+<span class="cstat-no" title="statement not covered" >      message = error?.message;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return Promise.reject({</span>
 <span class="cstat-no" title="statement not covered" >      ...error,</span>
-<span class="cstat-no" title="statement not covered" >      data: errorData,</span>
+<span class="cstat-no" title="statement not covered" >      data: { message, code: statusCode },</span>
 <span class="cstat-no" title="statement not covered" >    } as TApiError);</span>
 <span class="cstat-no" title="statement not covered" >  },</span>
 <span class="cstat-no" title="statement not covered" >);</span>
@@ -232,7 +199,7 @@ export type TApiError = Error &amp; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

@@ -1,8 +1,8 @@
 import type { AxiosInstance } from "axios";
-import type { IAuthentication } from "../../domain/repository/authentication.repository";
 import type { TAuthUser } from "../../domain/entity/authUser.entity";
 import type { TInputLogin } from "../../domain/entity/inputLogin.entity";
 import type { TInputRegister } from "../../domain/entity/inputRegister.entity";
+import type { IAuthentication } from "../../domain/repository/authentication.repository";
 import type { TAuthUserModel } from "../model/authUser.model";
 
 export const authenticationDatasource = ({

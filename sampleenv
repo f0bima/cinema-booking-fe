@@ -1,0 +1,7 @@
+
+PUBLIC_BE_BASE_URL = http://192.168.1.9:3000/api
+PUBLIC_GOOGLE_SSO_URL = http://localhost:3001/api/auth/google/
+
+ADMIN_EMAIL_TEST = admin@admin.com
+ADMIN_PASSWORD_TEST = admin123
+

@@ -1,18 +1,18 @@
+import type { TBookingValidation } from "@/features/booking/domain/entity/bookingValidation.entity";
+import TicketInfoModal from "@/features/ticketValidation/presentation/components/TicketInfoModal/TicketInfoModal";
 import { Scanner } from "@yudiel/react-qr-scanner";
-import { API } from "../../../../../common/infrastructure/datasource/api";
+import { useState } from "react";
+import { toast } from "sonner";
+import { API_GATEWAY } from "../../../../../common/infrastructure/datasource/apiGateway";
 import { zodUtils } from "../../../../../common/libs/utils/zod.utils";
 import { bookingDatasource } from "../../../../booking/infrastructure/datasource/booking.datasource";
 import { ticketValidationUsecase } from "../../../application/ticketValidation.usecase";
 import { ticketSchema } from "../../schema/ticket.schema";
-import { useState } from "react";
-import type { TBookingValidation } from "@/features/booking/domain/entity/bookingValidation.entity";
-import TicketInfoModal from "@/features/ticketValidation/presentation/components/TicketInfoModal/TicketInfoModal";
-import { is } from "zod/v4/locales";
-import { toast } from "sonner";
+import { errorUtils } from "@/common/libs/utils/error.utils";
 
 type Props = {};
 
-const bookingRepo = bookingDatasource({ api: API });
+const bookingRepo = bookingDatasource({ api: API_GATEWAY });
 const TicketScanner = (props: Props) => {
   const [bookingInfo, setBookingInfo] = useState<TBookingValidation>();
   const [scanningStatus, setScanningStatus] = useState<"scanning" | "iddle">(
@@ -25,8 +25,9 @@ const TicketScanner = (props: Props) => {
       const ticketParse = ticketSchema.safeParse(jsonValue);
 
       if (!ticketParse.success) {
-        const messages = zodUtils.getErrorMessages(ticketParse.error);
-        return console.log({ messages });
+        const messages = zodUtils.getErrorAPIMessages(ticketParse.error);
+        toast.error(messages.join(". "));
+        return;
       }
 
       const { bookingCode } = ticketParse.data;
@@ -40,11 +41,13 @@ const TicketScanner = (props: Props) => {
           setBookingInfo(response);
         })
         .catch((err) => {
-          toast.error(err.data);
+          console.log({ err });
+          const message = errorUtils.getErrorAPIMessage(err);
+          toast.error(message);
         })
         .finally(() => setScanningStatus("iddle"));
     } catch {
-      console.error("Not valid Qr Tiket");
+      toast.error("Not valid Qr Tiket");
     }
   };
 

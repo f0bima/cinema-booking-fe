@@ -1,14 +1,14 @@
-import { API } from "@/common/infrastructure/datasource/api";
+import { API_GATEWAY } from "@/common/infrastructure/datasource/apiGateway";
+import { authUtils } from "@/common/libs/utils/auth.utils";
+import { errorUtils } from "@/common/libs/utils/error.utils";
 import { bookingDatasource } from "@/features/booking/infrastructure/datasource/booking.datasource";
 import { onlineBookingSeatUsecase } from "@/features/studioSeats/application/onlineBookingSeat.usecase";
 import type { APIRoute } from "astro";
 
-const bookingRepo = bookingDatasource({ api: API });
+const bookingRepo = bookingDatasource({ api: API_GATEWAY });
 
 export const POST: APIRoute = async ({ request, cookies }) => {
-  // const token = authUtils.getToken({ request });
-  const token = cookies.get("token")?.value;
-  console.log({ token });
+  const token = authUtils.getToken({ cookies });
 
   const { seatIds, studioId } = await request.json();
 
@@ -22,8 +22,10 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       return new Response(JSON.stringify(response));
     })
     .catch((error) => {
-      return new Response(JSON.stringify({ error: error.data }), {
-        status: 400,
+      const message = errorUtils.getErrorAPIMessage(error);
+      const statusCode = errorUtils.getErrorAPIStatusCode(error);
+      return new Response(JSON.stringify({ error: message }), {
+        status: statusCode,
       });
     });
 };

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,55 +92,55 @@
 <a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { TTicket } from "../../domain/entity/ticket.entity";
 import type { TTicketModel } from "../model/booking.model";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const toTicketEntity = (model: TTicketModel): TTicket =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return {</span>
-<span class="cstat-no" title="statement not covered" >    id: model.id,</span>
-<span class="cstat-no" title="statement not covered" >    user: {</span>
-<span class="cstat-no" title="statement not covered" >      email: model.user_email,</span>
-<span class="cstat-no" title="statement not covered" >      id: model.user_id,</span>
-<span class="cstat-no" title="statement not covered" >      name: model.user_name,</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    bookingCode: model.booking_code,</span>
-<span class="cstat-no" title="statement not covered" >    bookingType: model.booking_type,</span>
-<span class="cstat-no" title="statement not covered" >    qrCode: model.qr_code,</span>
-<span class="cstat-no" title="statement not covered" >    seatIds: model.seat_ids,</span>
-<span class="cstat-no" title="statement not covered" >    studioId: model.studio_id,</span>
-<span class="cstat-no" title="statement not covered" >    status: model.status,</span>
-<span class="cstat-no" title="statement not covered" >    createdAt: model.created_at,</span>
-<span class="cstat-no" title="statement not covered" >    updatedAt: model.updated_at,</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+const toTicketEntity = (model: TTicketModel): TTicket =&gt; {
+  return {
+    id: model.id,
+    user: {
+      email: model.user_email,
+      id: model.user_id,
+      name: model.user_name,
+    },
+    bookingCode: model.booking_code,
+    bookingType: model.booking_type,
+    qrCode: model.qr_code,
+    seatIds: model.seat_ids,
+    studioId: model.studio_id,
+    status: model.status,
+    createdAt: model.created_at,
+    updatedAt: model.updated_at,
+  };
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const ticketMapper = {</span>
-<span class="cstat-no" title="statement not covered" >  toEntity: toTicketEntity,</span>
-<span class="cstat-no" title="statement not covered" >  toEntities: (models: TTicketModel[]): TTicket[] =&gt; models.map(toTicketEntity),</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+export const ticketMapper = {
+  toEntity: toTicketEntity,
+  toEntities: (models: TTicketModel[]): TTicket[] =&gt; models.map(toTicketEntity),
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -148,7 +148,7 @@ import type { TTicketModel } from "../model/booking.model";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T11:18:04.476Z
+                at 2025-11-13T15:36:05.388Z
             </div>
         <script src="../../../../../../prettify.js"></script>
         <script>
