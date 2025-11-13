@@ -2,8 +2,29 @@
 import Layout from "@/layouts/Layout.astro";
 
 import LoginForm from "../../features/authentication/presentation/components/LoginForm/LoginForm";
+import GoogleSSOButton from "../../features/authentication/presentation/components/GoogleSSOButton/GoogleSSOButton";
+
+const cookies = Astro.request.headers.get("cookie") || "";
+const userMatch = cookies.match(/(?:^|;\s*)google-user=([^;]+)/);
+const user = userMatch ? JSON.parse(decodeURIComponent(userMatch[1])) : null;
 ---
 
 <Layout>
-  <LoginForm client:load />
+  <section class="flex-col flex gap-12">
+    <h1 class="text-center text-3xl">Booking Cinema Login</h1>
+
+    <div class="">
+      <LoginForm client:load />
+    </div>
+
+    <p class="text-center">
+      Don’t have an account? <a href="/auth/register" class="text-indigo-500"
+        >Sign up now</a
+      >
+    </p>
+
+    <!-- <pre>{JSON.stringify(user)}</pre> -->
+
+    <GoogleSSOButton />
+  </section>
 </Layout>

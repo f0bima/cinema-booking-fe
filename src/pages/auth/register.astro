@@ -5,5 +5,14 @@ import RegisterForm from "../../features/authentication/presentation/components/
 ---
 
 <Layout>
-  <RegisterForm client:load />
+  <section class="flex-col flex gap-12">
+    <h1 class="text-center text-3xl">Booking Cinema Register</h1>
+
+    <RegisterForm client:load />
+    <p class="text-center">
+      Already have an account? <a href="/auth/login" class="text-indigo-500"
+        >Log in</a
+      >
+    </p>
+  </section>
 </Layout>
