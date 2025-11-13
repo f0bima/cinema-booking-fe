@@ -1,17 +1,13 @@
+import { PROXY_API } from "@/common/infrastructure/datasource/proxyApi";
+import Button from "@/common/presentation/component/Button/Button";
+import type { TTicket } from "@/features/booking/domain/entity/ticket.entity";
 import QRModalViewer from "@/features/tickets/presentation/components/QRModalViewer/QRModalViewer";
+import { navigate } from "astro/virtual-modules/transitions-router.js";
 import { useState } from "react";
 import { toast } from "sonner";
-import { API } from "../../../../../common/infrastructure/datasource/api";
-import { bookingDatasource } from "../../../../booking/infrastructure/datasource/booking.datasource";
 import BookingSeatsButton from "../BookingSeatsButton/BookingSeatsButton";
-import { PROXY_API } from "@/common/infrastructure/datasource/proxyApi";
-import type { TTicket } from "@/features/booking/domain/entity/ticket.entity";
-import Button from "@/common/presentation/component/Button/Button";
-import { navigate } from "astro/virtual-modules/transitions-router.js";
 
 type Props = { studioId: number };
-
-const bookingRepo = bookingDatasource({ api: API });
 
 const OnlineBookingButton = (props: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

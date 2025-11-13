@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:4321/api";
+const baseUrl = "/api";
 
 export type TErrorData = {
   code: string;

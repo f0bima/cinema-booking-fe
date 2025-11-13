@@ -1,0 +1,15 @@
+---
+import OfflineBookingButton from "@/features/studioSeats/presentation/components/OfflineBookingButton/OfflineBookingButton";
+import Layout from "@/layouts/Layout.astro";
+import SeatsLayout from "@/layouts/SeatsLayout.astro";
+const params = Astro.params;
+
+const studioId = parseInt(params.studioId);
+---
+
+<Layout>
+  <h1 class="text-3xl text-center">Offline Booking</h1>
+  <SeatsLayout>
+    <OfflineBookingButton studioId={studioId} client:load />
+  </SeatsLayout>
+</Layout>

@@ -13,7 +13,8 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ ...response }), {
         status: 200,
         headers: {
-          "Set-Cookie": `token=${response.token}; Path=/; HttpOnly; Secure; SameSite=Strict; `,
+          // "Set-Cookie": `token=${response.token}; Path=/; HttpOnly; Secure; SameSite=Strict; `,
+          "Set-Cookie": `token=${response.token}; Path=/; HttpOnly; SameSite=Strict; `,
           "Content-Type": "application/json",
         },
       });

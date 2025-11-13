@@ -1,0 +1,11 @@
+---
+import TicketScanner from "@/features/ticketValidation/presentation/components/TicketScanner";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+  <section class="space-y-4">
+    <h1 class="text-3xl text-center">Ticket Validation</h1>
+    <TicketScanner client:load />
+  </section>
+</Layout>

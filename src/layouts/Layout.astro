@@ -3,7 +3,10 @@ import "@/styles/global.css";
 
 import Navigation from "@/common/presentation/component/Navigation/Navigation";
 import { Toaster } from "@/components/ui/sonner";
+
 const { pathname } = Astro.url;
+
+const ishideNavigation = pathname.startsWith("/auth");
 ---
 
 <!doctype html>
@@ -17,14 +20,15 @@ const { pathname } = Astro.url;
   </head>
   <body class="w-full min-h-screen justify-center flex bg-indigo-100">
     <main class="max-w-md shadow-2xl w-full bg-white">
-      <div class="px-4 py-16">
+      <div class="px-4 py-20">
         <slot />
       </div>
       {
-        !pathname.startsWith("/auth") && (
+        !ishideNavigation && (
           <Navigation currentPathname={pathname} client:load />
         )
       }
+
       <Toaster position="top-center" client:load />
     </main>
   </body>

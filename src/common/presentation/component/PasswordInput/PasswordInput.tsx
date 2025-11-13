@@ -13,8 +13,7 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
   ({ ...props }, ref) => {
     const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
 
-    const toggleShowPassword: MouseEventHandler<HTMLButtonElement> = (e) => {
-      e.preventDefault();
+    const toggleShowPassword = () => {
       setIsShowPassword((prev) => !prev);
     };
 
@@ -26,12 +25,12 @@ const PasswordInput = forwardRef<HTMLInputElement, Props>(
           {...props}
           className="w-full"
         />
-        <button
+        <div
           className="absolute top-1/2 right-5 -translate-y-1/2 cursor-pointer"
           onClick={toggleShowPassword}
         >
           {isShowPassword ? <LuEyeClosed /> : <LuEye />}
-        </button>
+        </div>
       </div>
     );
   },
