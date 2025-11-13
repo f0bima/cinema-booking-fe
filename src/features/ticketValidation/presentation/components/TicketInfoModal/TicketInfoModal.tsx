@@ -24,10 +24,8 @@ const TicketInfoModal = ({ bookingInfo, ...props }: Props) => {
         showCloseButton={props.onOpenChange !== undefined}
       >
         <DialogHeader>
-          <DialogTitle>Your QR booking ticket</DialogTitle>
-          <DialogDescription>
-            Show your QR booking ticket to our staff
-          </DialogDescription>
+          <DialogTitle>Ticket Details</DialogTitle>
+          <DialogDescription>Your ticket is valid.</DialogDescription>
         </DialogHeader>
         <div
           id="print-area"
