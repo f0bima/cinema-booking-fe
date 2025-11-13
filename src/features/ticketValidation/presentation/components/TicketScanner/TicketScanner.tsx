@@ -1,12 +1,12 @@
 import { Scanner } from "@yudiel/react-qr-scanner";
-import { API } from "../../../../common/infrastructure/datasource/api";
-import { zodUtils } from "../../../../common/libs/utils/zod.utils";
-import { bookingDatasource } from "../../../booking/infrastructure/datasource/booking.datasource";
-import { ticketValidationUsecase } from "../../application/ticketValidation.usecase";
-import { ticketSchema } from "../schema/ticket.schema";
+import { API } from "../../../../../common/infrastructure/datasource/api";
+import { zodUtils } from "../../../../../common/libs/utils/zod.utils";
+import { bookingDatasource } from "../../../../booking/infrastructure/datasource/booking.datasource";
+import { ticketValidationUsecase } from "../../../application/ticketValidation.usecase";
+import { ticketSchema } from "../../schema/ticket.schema";
 import { useState } from "react";
 import type { TBookingValidation } from "@/features/booking/domain/entity/bookingValidation.entity";
-import TicketInfoModal from "@/features/ticketValidation/presentation/components/TicketInfoModal";
+import TicketInfoModal from "@/features/ticketValidation/presentation/components/TicketInfoModal/TicketInfoModal";
 import { is } from "zod/v4/locales";
 import { toast } from "sonner";
 

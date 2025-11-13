@@ -26,14 +26,14 @@ const usedTickets = tickets.filter((ticket) => ticket.status === "used");
     <section class="flex flex-col gap-4">
       <div class="flex gap-2 items-center">
         <IoTicket />
-        <h2>Active Ticket</h2>
+        <h2 class="font-semibold">Active Ticket</h2>
       </div>
       <TicketsComponent tickets={activeTickets} client:load />
     </section>
     <section class="flex flex-col gap-4">
       <div class="flex gap-2 items-center">
         <LuHistory />
-        <h2>Active Ticket</h2>
+        <h2 class="font-semibold">Booking History</h2>
       </div>
       <TicketsComponent tickets={usedTickets} client:load />
     </section>

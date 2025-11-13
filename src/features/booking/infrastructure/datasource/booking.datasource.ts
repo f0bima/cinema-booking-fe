@@ -6,8 +6,8 @@ import type { TInputOfflineBooking } from "../../domain/entity/inputOfflineBooki
 import type { TInputOnlineBooking } from "../../domain/entity/inputOnlineBooking.entity";
 import type { TTicket } from "../../domain/entity/ticket.entity";
 
-import type { TBookingModel, TTicketModel } from "../model/booking.model";
 import { ticketMapper } from "../mapper/ticket.mapper";
+import type { TBookingModel, TTicketModel } from "../model/booking.model";
 
 export const bookingDatasource = ({
   api,
@@ -54,7 +54,6 @@ export const bookingDatasource = ({
   },
 
   getTikets: async function (props: { token: string }): Promise<TTicket[]> {
-    console.log({ token: props.token });
     return await api
       .get("/booking/my-bookings", {
         headers: { Authorization: props.token },
