@@ -6,6 +6,7 @@ import {
   type TUser,
 } from "@/features/authentication/domain/entity/user.entity";
 
+// FIXME: token
 const userFromCookies = Astro.cookies.get("user")?.value;
 let user: TUser;
 try {
